@@ -105,10 +105,16 @@ export default {
               authority: ['admin'],
             },
             {
-              name: '分析页',
+              name: '首页',
               icon: 'smile',
               path: '/home',
               component: './home',
+            },
+            {
+              name: '店铺装修',
+              icon: 'smile',
+              path: '/page-manage',
+              component: './page-manage/index',
             },
             {
               component: './404',
@@ -144,7 +150,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string
+      localName: string,
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||
@@ -179,4 +185,3 @@ export default {
   //   },
   // },
 } as IConfig;
-

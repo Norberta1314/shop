@@ -43,17 +43,17 @@ export interface DefaultSettings {
 }
 
 export default {
-  "navTheme": "light",
-  "primaryColor": "daybreak",
-  "layout": "topmenu",
-  "contentWidth": "Fluid",
-  "fixedHeader": false,
-  "autoHideHeader": false,
-  "fixSiderbar": false,
-  "menu": {
-    "locale": false
+  navTheme: 'light',
+  primaryColor: 'daybreak',
+  layout: 'topmenu',
+  contentWidth: 'Fluid',
+  fixedHeader: true,
+  autoHideHeader: false,
+  fixSiderbar: false,
+  menu: {
+    locale: false,
   },
-  "title": "Ant Design Pro",
-  "pwa": false,
-  "iconfontUrl": ""
+  title: 'Ant Design Pro',
+  pwa: false,
+  iconfontUrl: '',
 } as DefaultSettings;
