@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Spin } from 'antd';
+import ReactIf from "@/components/ReactIf";
 import Group from '@/pages/page-manage/index/components/group';
 import styles from './index.less';
+import { fetchPageList } from "@/pages/page-manage/index/service";
+import { connect } from 'dva'
+import { Result } from "@/type/Result";
 
-export default () => {
+const PageManage = () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [baseList, setBaseList] = useState([]);
+  const [selfList, setSelfList] = useState([])
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    fetchPageList().then((r: Result<any>) => {
+      if (r?.success) {
+        setBaseList(r?.result?.baseList)
+        setSelfList(r?.result?.selfList)
+      }
+      setLoading(false)
+    })
   }, []);
+
   return (
     <div className={styles.main}>
-      <Group title="基础" />
+      <ReactIf vIf={!loading}>
+        <Group title="基础页面" list={baseList}/>
+        <Group title="自定义页面" list={selfList}/>
+      </ReactIf>
+      <ReactIf vIf={loading}>
+        <Spin/>
+      </ReactIf>
     </div>
   );
-};
+}
+
+export default connect()(PageManage)

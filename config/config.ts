@@ -105,12 +105,6 @@ export default {
               authority: ['admin'],
             },
             {
-              name: '首页',
-              icon: 'smile',
-              path: '/home',
-              component: './home',
-            },
-            {
               name: '店铺装修',
               icon: 'smile',
               path: '/page-manage',
