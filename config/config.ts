@@ -68,6 +68,12 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
+      name: '空白页面',
+      icon: 'smile',
+      path: '/page/edit',
+      component: './page/edit',
+    },
+    {
       path: '/user',
       component: '../layouts/UserLayout',
       routes: [
@@ -107,8 +113,8 @@ export default {
             {
               name: '店铺装修',
               icon: 'smile',
-              path: '/page-manage',
-              component: './page-manage/index',
+              path: '/page/manage',
+              component: './page/manage',
             },
             {
               component: './404',
@@ -144,7 +150,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string,
+      localName: string
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||

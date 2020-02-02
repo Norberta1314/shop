@@ -1,9 +1,11 @@
 @import '~antd/es/style/themes/default.less';
+@import "button";
 
 html,
 body,
 #root {
   height: 100%;
+  background: #eef9ef;
 }
 
 .colorWeak {
@@ -12,6 +14,7 @@ body,
 
 .ant-layout {
   min-height: 100vh;
+  background: #eef9ef;
 }
 
 canvas {
@@ -33,11 +36,13 @@ ol {
   .ant-table {
     width: 100%;
     overflow-x: auto;
+
     &-thead > tr,
     &-tbody > tr {
       > th,
       > td {
         white-space: pre;
+
         > span {
           display: block;
         }

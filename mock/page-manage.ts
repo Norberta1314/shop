@@ -16,7 +16,7 @@ const pageList = (req: Request, res: Response) => {
   }
   setTimeout(() => {
     res.json(result)
-  }, 1000)
+  }, 100)
 
 }
 
