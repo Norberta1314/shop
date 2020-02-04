@@ -1,3 +1,5 @@
 export enum PageComponentsType {
-  Headline, Image, ShowCase, Notification, Nav, Affix,
+  Headline, Image, Carousel, ShowCase, Notification, Nav, Affix,
+  Goods, MemberCard, Coupon, Evaluation,
 }
+

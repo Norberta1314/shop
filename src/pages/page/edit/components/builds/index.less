@@ -5,4 +5,23 @@
   height: 100%;
   padding: 20px;
   background: @self-dark-background;
+
+  .self {
+    padding: 10px;
+
+    .title {
+      font-size: 14px;
+    }
+
+    :global {
+      ul {
+        padding: 0;
+      }
+
+      li {
+        display: inline-block;
+        margin: 10px;
+      }
+    }
+  }
 }
