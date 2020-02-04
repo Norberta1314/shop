@@ -1,11 +1,10 @@
 import React from "react";
-import styles from '../index.less';
-import buttonStyle from '../../../../button.less'
 import { Button, Card } from "antd";
 import { EditOutlined, DeleteOutlined, EllipsisOutlined } from "@ant-design/icons/lib";
-import { Page } from "@/pages/page/type/page";
 import { Dispatch } from "redux";
-import { connect } from 'dva'
+import { connect } from "dva";
+import { Page } from "@/pages/page/type/page";
+import styles from "../index.less";
 
 interface CardProp {
   page: Page;
@@ -16,18 +15,18 @@ const PageCard = ({page, dispatch}: CardProp) => {
   const handleClickEdit = () => {
     if (dispatch) {
       dispatch({
-        type: 'pageManage/goToEdit',
+        type: "pageManage/goToEdit",
         payload: {id: page.id}
-      })
+      });
     }
   };
 
   const handleClickDelete = () => {
-    console.log('click delete')
+    console.log("click delete");
   };
 
   const handleClickEllipsis = () => {
-    console.log('click ellipsis')
+    console.log("click ellipsis");
   };
   return (
     <div className={styles.card}>
@@ -42,7 +41,7 @@ const PageCard = ({page, dispatch}: CardProp) => {
         <div className={styles.title}>{page.title}</div>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default connect()(PageCard)
+export default connect()(PageCard);

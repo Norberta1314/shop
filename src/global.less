@@ -1,11 +1,13 @@
 @import '~antd/es/style/themes/default.less';
 @import "button";
+@import "default";
+
 
 html,
 body,
 #root {
   height: 100%;
-  background: #eef9ef;
+  background: @self-background;
 }
 
 .colorWeak {
@@ -14,7 +16,7 @@ body,
 
 .ant-layout {
   min-height: 100vh;
-  background: #eef9ef;
+  background: @self-background;
 }
 
 canvas {

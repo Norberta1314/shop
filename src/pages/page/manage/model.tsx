@@ -1,7 +1,7 @@
-import { Effect } from "@/type/Effect";
 import { Reducer } from "redux";
 // import { History } from "history";
 import { routerRedux } from "dva";
+import { Effect } from "@/type/Effect";
 
 export interface PageManage {
 
@@ -14,7 +14,7 @@ export interface ModelType {
   effects: {
     goToEdit: Effect<PageManage>;
   };
-  reducer: {
+  reducers: {
     save: Reducer<PageManage>;
   };
 }
@@ -40,7 +40,7 @@ const Model: ModelType = {
       yield put(routerRedux.push(`/page/edit?id=${payload?.id}`))
     }
   },
-  reducer: {
+  reducers: {
     save(state, {payload}) {
       return {
         ...state,
