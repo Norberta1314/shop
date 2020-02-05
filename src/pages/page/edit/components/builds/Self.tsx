@@ -1,11 +1,24 @@
 import React from "react";
 import { Button } from "antd";
+import { connect } from "dva";
+import { Dispatch } from "redux";
 import { buildList } from "@/pages/page/type/buildList";
 import styles from "./index.less";
 
-const Self = () => {
+interface SelfProps {
+  dispatch?: Dispatch<any>;
+}
+
+const Self = ({dispatch}: SelfProps) => {
   function handleClickComponents(type: number) {
-    console.log(type);
+    if (dispatch) {
+      dispatch({
+        type: "pageEdit/addComponent",
+        payload: {
+          type
+        }
+      });
+    }
     return false;
   }
 
@@ -31,4 +44,4 @@ const Self = () => {
   );
 };
 
-export default Self;
+export default connect()(Self);

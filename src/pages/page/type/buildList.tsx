@@ -5,6 +5,7 @@ import React from "react";
 const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_1627426_9a69kqqcmgw.js"
 });
+
 export const buildList = {
   baseList: [
     {

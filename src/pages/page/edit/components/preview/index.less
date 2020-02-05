@@ -3,4 +3,20 @@
 .main {
   flex: 1;
   height: 100%;
+  overflow: scroll;
+
+  .container {
+    width: 375px;
+    height: auto;
+    min-height: 667px;
+    margin: auto;
+    padding: 0;
+    background: white;
+
+    li {
+      &:hover {
+        background: #2F54EB;
+      }
+    }
+  }
 }
