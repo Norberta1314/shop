@@ -134,6 +134,7 @@ export default {
   theme: {
     'primary-color': '#ffa161',
     'link-color': '#ffa161',
+    'font-size-base': '12px',
   },
   define: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
