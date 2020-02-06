@@ -28,7 +28,7 @@ const Self = ({dispatch}: SelfProps) => {
       <ul>
         {
           buildList.baseList.map((item) => (
-            <li key={item.type}><Button onClick={() => handleClickComponents(item.type)} icon={item.icon}>{item.title}</Button></li>
+            <li key={item.type} draggable="true"><Button onClick={() => handleClickComponents(item.type)} icon={item.icon}>{item.title}</Button></li>
           ))
         }
       </ul>

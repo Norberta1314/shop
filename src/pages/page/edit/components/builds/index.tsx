@@ -7,6 +7,7 @@ import styles from "./index.less";
 import { PageEdit } from "@/pages/page/edit/ModelType";
 import { Page, StyleType } from "@/pages/page/type/page";
 import Self from "@/pages/page/edit/components/builds/Self";
+import ReactIf from "@/components/ReactIf";
 
 interface BuildProps {
   page?: Page;
@@ -34,7 +35,10 @@ const Build = ({page, dispatch}: BuildProps) => {
         <Radio.Button value={StyleType.default}>默认</Radio.Button>
         <Radio.Button value={StyleType.self}>自定义</Radio.Button>
       </Radio.Group>
-      <Self/>
+      <ReactIf vIf={page?.styleType === StyleType.self}>
+        <Self/>
+      </ReactIf>
+
     </div>
   );
 };

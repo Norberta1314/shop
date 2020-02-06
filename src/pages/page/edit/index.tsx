@@ -9,9 +9,9 @@ export default () => (
   <div className={styles.main}>
     <Header/>
     <div className={styles.container}>
-      <Builds></Builds>
-      <Preview></Preview>
-      <Setting></Setting>
+      <Builds/>
+      <Preview/>
+      <Setting/>
     </div>
 
   </div>

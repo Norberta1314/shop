@@ -12,12 +12,24 @@ export const pageEdit: PageEdit = {
     id: 0,
     title: "",
     previewImg: "",
-    styleType: StyleType.default,
+    styleType: StyleType.self,
     components: [
       {
         type: 0,
         headline: {
-          title: "xz"
+          title: "第一个"
+        }
+      },
+      {
+        type: 0,
+        headline: {
+          title: "第二个"
+        }
+      },
+      {
+        type: 0,
+        headline: {
+          title: "第三个"
         }
       }
     ]

@@ -17,6 +17,7 @@ export interface ModelType {
     savePage: Reducer<PageEdit>;
     addComponent: Reducer<PageEdit>;
     editComponent: Reducer<PageEdit>;
+    dragComponent: Reducer<PageEdit>;
   };
 }
 
@@ -61,6 +62,21 @@ const Model: ModelType = {
           const list = page.components;
           list[state.currentEditComponent] = payload;
         }
+        return {
+          ...state,
+          page
+        };
+      }
+      return {
+        ...state
+      };
+    },
+    dragComponent(state, {payload}) {
+      if (state && state.page?.components) {
+        const page = deepCopy(state.page);
+        const pageMiddle = deepCopy(page.components[payload.dragStart]);
+        page.components[payload.dragStart] = page.components[payload.dragEnd];
+        page.components[payload.dragEnd] = pageMiddle;
         return {
           ...state,
           page
