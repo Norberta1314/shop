@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dispatch } from "redux";
 import { connect } from "dva";
 import { PageComponents } from "@/pages/page/type/pageComponents";
@@ -13,11 +13,28 @@ interface Prop {
   dispatch?: Dispatch<any>;
 }
 
-const Index = ({list, dispatch, currentEditComponent}: Prop) => {
-  const [dragStart, setDragStart] = useState<number | null>(null);
-  const [dragEnd, setDragEnd] = useState<number | null>(null);
+interface State {
+  dragStart: number | null;
+  dragEnd: number | null;
+}
 
-  function handleClickComponents(index: number) {
+class Index extends React.Component<Prop, State> {
+
+  shouldComponentUpdate(nextProps: Readonly<Prop>, nextState: Readonly<State>): boolean {
+    console.log("show component update", nextState);
+    return nextProps !== this.props;
+  }
+
+  constructor(props: Prop) {
+    super(props);
+    this.state = {
+      dragStart: null,
+      dragEnd: null
+    };
+  }
+
+  handleClickComponents(index: number) {
+    const {dispatch} = this.props;
     if (dispatch) {
       dispatch({
         type: `${namespace}/save`,
@@ -28,84 +45,92 @@ const Index = ({list, dispatch, currentEditComponent}: Prop) => {
     }
   };
 
-  function handleDragStart(e: React.DragEvent<HTMLLIElement>, index: number) {
-    setDragStart(index);
-    setDragEnd(index);
-    e.preventDefault();
-    console.log("drag start", index);
+  liClassName(index: number) {
+    const {currentEditComponent} = this.props;
+    return `${currentEditComponent === index ? styles.choosedLi : null} ${this.state.dragStart === index ? styles.dragStart : null}`;
+    // return "";
   }
 
-  function handleDragEnd(e: React.DragEvent<HTMLLIElement>) {
-    setDragStart(null);
+  handleDragStart(e: React.DragEvent<HTMLLIElement>, index: number) {
+    console.log("drag start", index, this.refs[`component${index}`]);
+    // eslint-disable-next-line react/no-string-refs
+    const refs = this.refs[`component${index}`];
+    if (refs) {
+      if ("classList" in refs) {
+        refs.classList.add("dragStart");
+      }
+    }
+    this.setState(() => ({dragStart: index}));
+  }
+
+  handleDragEnd(e: React.DragEvent<HTMLLIElement>) {
     console.log("drag end");
-    e.preventDefault();
-  }
-
-  function handleDrag(e: React.DragEvent<HTMLLIElement>, index: number) {
-    console.log("drag", index);
-    // swapDrag(index)
-    e.preventDefault();
-  }
-
-  function swapDrag(index: number) {
-    if (dragStart !== null) {
-      if (dispatch) {
-        dispatch({
-          type: `${namespace}/dragComponent`,
-          payload: {
-            dragStart,
-            dragEnd: index,
-          },
-        });
-      }
-    }
-  }
-
-  function handleDragEnter(e: React.DragEvent<HTMLLIElement>, index: number) {
-    console.log("drag enter", index);
-    swapDrag(index)
-    if (dragEnd !== index) {
-      setDragEnd(index);
-      swapDrag(index);
+    const {dispatch} = this.props;
+    if (dispatch) {
+      dispatch({
+        type: `${namespace}/dragComponent`,
+        payload: {
+          dragStart: this.state.dragStart,
+          dragEnd: this.state.dragEnd
+        }
+      });
     }
     e.preventDefault();
   }
 
-  function handleDragOver(e: React.DragEvent<HTMLLIElement>, index: number) {
+  handleDragEnter(e: React.DragEvent<HTMLLIElement>, index: number) {
+    // eslint-disable-next-line react/no-string-refs
+    const refs = this.refs[`component${index}`];
+    if (refs) {
+      if ("classList" in refs) {
+        refs.classList.add("dragEnter");
+      }
+    }
+    this.setState(() => ({dragEnd: index}));
+  }
+
+  handleDragLeave(e: React.DragEvent<HTMLLIElement>, index: number) {
+    // eslint-disable-next-line react/no-string-refs
+    const refs = this.refs[`component${index}`];
+    if (refs) {
+      if ("classList" in refs) {
+        refs.classList.remove("dragEnter");
+      }
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  handleDrag(e: React.DragEvent<HTMLLIElement>) {
     e.preventDefault();
   }
 
-  function handleDragLeave(index: number) {
-    console.log("drag leave", index);
-  }
-
-  function liClassName(index: number) {
-    return `${currentEditComponent === index ? styles.choosedLi : null} ${dragStart === index ? styles.dragStart : null}`;
-  }
-
-  return (
-    <ul className={styles.container}>
-      {
-        list.map((item, index) => (
-          <li key={`item?.type${Math.random()}`}
-              // onClick={() => handleClickComponents(index)}
-              className={liClassName(index)}
-              draggable="true"
-              onDrag={(e) => handleDrag(e, index)}
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDragEnd={(e) => handleDragEnd(e)}
-              onDragEnter={(e) => handleDragEnter(e, index)}
-              onDragOver={(e) => handleDragOver(e, index)}
-              onDragLeave={() => handleDragLeave(index)}
-          >
-            <ReactIf vIf={item?.headline}>
-              <Headline headline={item?.headline}/>
-            </ReactIf>
-          </li>
-        ))
-      }
-    </ul>
-  );
-};
+  render() {
+    const {list, currentEditComponent} = this.props;
+    return (
+      <ul className={styles.container}>
+        {
+          list.map((item, index) => (
+            <li key={`item?.type${Math.random()}`}
+                ref={`component${index}`}
+                onClick={() => this.handleClickComponents(index)}
+                className={`${currentEditComponent === index ? styles.choosedLi : null}`}
+                draggable="true"
+                onDrag={(e) => this.handleDrag(e)}
+                onDragStart={(e) => this.handleDragStart(e, index)}
+                onDragEnd={(e) => this.handleDragEnd(e)}
+                onDragEnter={(e) => this.handleDragEnter(e, index)}
+              // onDragOver={(e) => handleDragOver(e, index)}
+                onDragLeave={(e) => this.handleDragLeave(e, index)}
+            >
+              <ReactIf vIf={item?.headline}>
+                <Headline headline={item?.headline}/>
+              </ReactIf>
+            </li>
+          ))
+        }
+      </ul>
+    );
+  };
+}
 
 export default connect()(Index);
