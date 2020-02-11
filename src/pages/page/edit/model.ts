@@ -74,9 +74,15 @@ const Model: ModelType = {
     dragComponent(state, {payload}) {
       if (state && state.page?.components) {
         const page = deepCopy(state.page);
-        const pageMiddle = deepCopy(page.components[payload.dragStart]);
-        page.components[payload.dragStart] = page.components[payload.dragEnd];
-        page.components[payload.dragEnd] = pageMiddle;
+        const {dragStart, dragEnd} = payload;
+        const pageMiddle = deepCopy(page.components[dragStart]);
+        if (dragStart > dragEnd) {
+          page.components.splice(dragStart, 1);
+          page.components.splice(dragEnd + 1, 0, pageMiddle);
+        } else if (dragStart < dragEnd) {
+          page.components.splice(dragEnd + 1, 0, pageMiddle);
+          page.components.splice(payload.dragStart, 1);
+        }
         return {
           ...state,
           page

@@ -20,17 +20,16 @@ interface State {
 
 class Index extends React.Component<Prop, State> {
 
-  shouldComponentUpdate(nextProps: Readonly<Prop>, nextState: Readonly<State>): boolean {
-    console.log("show component update", nextState);
-    return nextProps !== this.props;
-  }
-
   constructor(props: Prop) {
     super(props);
     this.state = {
       dragStart: null,
       dragEnd: null
     };
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<Prop>): boolean {
+    return nextProps !== this.props;
   }
 
   handleClickComponents(index: number) {
@@ -45,14 +44,7 @@ class Index extends React.Component<Prop, State> {
     }
   };
 
-  liClassName(index: number) {
-    const {currentEditComponent} = this.props;
-    return `${currentEditComponent === index ? styles.choosedLi : null} ${this.state.dragStart === index ? styles.dragStart : null}`;
-    // return "";
-  }
-
   handleDragStart(e: React.DragEvent<HTMLLIElement>, index: number) {
-    console.log("drag start", index, this.refs[`component${index}`]);
     // eslint-disable-next-line react/no-string-refs
     const refs = this.refs[`component${index}`];
     if (refs) {
@@ -64,7 +56,6 @@ class Index extends React.Component<Prop, State> {
   }
 
   handleDragEnd(e: React.DragEvent<HTMLLIElement>) {
-    console.log("drag end");
     const {dispatch} = this.props;
     if (dispatch) {
       dispatch({
@@ -115,12 +106,11 @@ class Index extends React.Component<Prop, State> {
                 onClick={() => this.handleClickComponents(index)}
                 className={`${currentEditComponent === index ? styles.choosedLi : null}`}
                 draggable="true"
-                onDrag={(e) => this.handleDrag(e)}
-                onDragStart={(e) => this.handleDragStart(e, index)}
-                onDragEnd={(e) => this.handleDragEnd(e)}
-                onDragEnter={(e) => this.handleDragEnter(e, index)}
-              // onDragOver={(e) => handleDragOver(e, index)}
-                onDragLeave={(e) => this.handleDragLeave(e, index)}
+                onDrag={e => this.handleDrag(e)}
+                onDragStart={e => this.handleDragStart(e, index)}
+                onDragEnd={e => this.handleDragEnd(e)}
+                onDragEnter={e => this.handleDragEnter(e, index)}
+                onDragLeave={e => this.handleDragLeave(e, index)}
             >
               <ReactIf vIf={item?.headline}>
                 <Headline headline={item?.headline}/>
