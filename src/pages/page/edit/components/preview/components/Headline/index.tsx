@@ -1,13 +1,13 @@
 import React from "react";
-import { Headline } from "@/pages/page/type/pageComponents";
+import { Headline } from "@/pages/page/type/component/Headline";
 
 interface Props {
-  headline?: Headline
+  headline: Headline
 }
 
 const Index = ({headline}: Props) => (
   <div>
-    {headline?.title}
+    {headline.title}
   </div>
 );
 

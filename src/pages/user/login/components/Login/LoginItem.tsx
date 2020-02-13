@@ -1,6 +1,4 @@
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Col, Input, Row, message } from 'antd';
+import { Button, Col, Input, Row, Form, message } from 'antd';
 import React, { useState, useCallback, useEffect } from 'react';
 
 import omit from 'omit.js';
@@ -38,11 +36,11 @@ export interface LoginItemProps extends Partial<FormItemProps> {
 const FormItem = Form.Item;
 
 const getFormItemOptions = ({
-  onChange,
-  defaultValue,
-  customProps = {},
-  rules,
-}: LoginItemProps) => {
+                              onChange,
+                              defaultValue,
+                              customProps = {},
+                              rules,
+                            }: LoginItemProps) => {
   const options: {
     rules?: LoginItemProps['rules'];
     onChange?: LoginItemProps['onChange'];
