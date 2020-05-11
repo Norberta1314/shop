@@ -1,0 +1,64 @@
+@import "../../../../../default";
+
+@li-choose-color: rgba(108, 124, 254, 0.58);
+
+:global {
+  .dragStart {
+    opacity: 0.5;
+  }
+
+  .dragEnter {
+    &:hover {
+      background: none;
+    }
+
+    &::after {
+      display: block;
+      width: 100%;
+      height: 20px;
+      background: @li-choose-color;
+      content: "";
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+
+  .container {
+    width: 375px;
+    height: auto;
+    min-height: 667px;
+    margin: auto;
+    padding: 0;
+    background: white;
+
+
+    li {
+      position: relative;
+      min-height: 10px;
+
+      &:hover {
+        background: @li-choose-color;
+      }
+    }
+
+
+    .choosedLi {
+      &::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: dashed 1px @li-choose-color;
+        content: '';
+      }
+    }
+  }
+}
