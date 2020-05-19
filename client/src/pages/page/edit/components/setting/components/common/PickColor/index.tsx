@@ -6,7 +6,7 @@ import styles from "./index.less";
 import { ColorProps } from "@/type/react-color";
 
 interface Props {
-  title: string;
+  label: string;
   value: string;
   onChangeInput?: (value: string) => any;
 }
@@ -31,7 +31,7 @@ const Index: Type = props => {
     <div className={commonStyle.commonEdit}>
       <Row align="middle">
         <Col>
-          <div className={commonStyle.title}>{props.title}</div>
+          <div className={commonStyle.label}>{props.label}</div>
         </Col>
         <Col span={6} offset={1}>
           <Popover content={picker} trigger="click">

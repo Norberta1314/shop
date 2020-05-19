@@ -27,7 +27,7 @@ const Model: ModelType = {
   effects: {
     * goToEdit({payload}, {put}) {
       yield put(routerRedux.push(`/page/edit?id=${payload?.id}`));
-    }
+    },
   },
   reducers: {
     save(state, {payload}) {

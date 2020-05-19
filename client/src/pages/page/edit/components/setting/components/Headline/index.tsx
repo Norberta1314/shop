@@ -18,16 +18,16 @@ interface Props {
 const Index = ({headline, dispatch}: Props) => {
 
   function handleChange(attribute: string, e: any) {
-    const headlineLocal = deepCopy(headline);
-    if (headlineLocal) {
-      headlineLocal[attribute] = e;
+    const localHeadline = deepCopy(headline);
+    if (localHeadline) {
+      localHeadline[attribute] = e;
     }
     if (dispatch) {
       dispatch({
         type: `${namespace}/editComponent`,
         payload: {
           type: PageComponentsType.Headline,
-          headline: headlineLocal
+          headline: localHeadline
         }
       });
     }
@@ -36,11 +36,11 @@ const Index = ({headline, dispatch}: Props) => {
   return (
     <div>
       <InputText
-        title="标题"
+        label="标题"
         text={headline.title}
         onChangeInput={(e) => handleChange("title", e)} />
       <InputNumber
-        title="字体"
+        label="字体"
         min={12}
         max={20}
         value={headline.fontSize}
@@ -49,13 +49,13 @@ const Index = ({headline, dispatch}: Props) => {
       <Row>
         <Col span={12}>
           <PickColor
-            title="字体颜色"
+            label="字体颜色"
             value={headline.fontColor}
             onChangeInput={(e) => handleChange("fontColor", e)} />
         </Col>
         <Col span={12}>
           <PickColor
-            title="背景颜色"
+            label="背景颜色"
             value={headline.backgroundColor}
             onChangeInput={(e) => handleChange("backgroundColor", e)} />
         </Col>

@@ -5,7 +5,7 @@ import ReactIf from "@/components/ReactIf";
 
 
 interface Props {
-  title: string;
+  label: string;
   min: number;
   max: number;
   value: number;
@@ -28,10 +28,10 @@ const Index: Type = props => {
   return (
     <div className={commonStyle.commonEdit}>
       <Row align="middle">
-        <Col>
-          <div className={commonStyle.title}>{props.title}</div>
+        <Col span={3}>
+          <div className={commonStyle.label}>{props.label}</div>
         </Col>
-        <Col span={12} offset={1}>
+        <Col span={10} offset={1}>
           <Slider
             min={props.min}
             max={props.max}

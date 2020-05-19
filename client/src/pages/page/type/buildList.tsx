@@ -1,10 +1,8 @@
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
-import { createFromIconfontCN } from "@ant-design/icons/lib";
 import React from "react";
+import IconFont from "@/components/IconFont";
 
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_1627426_9a69kqqcmgw.js"
-});
+
 
 export const buildList = {
   baseList: [

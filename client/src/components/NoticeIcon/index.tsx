@@ -112,6 +112,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
     return trigger;
   }
 
+  // @ts-ignore
   return (
     <HeaderDropdown
       placement="bottomRight"

@@ -12,6 +12,7 @@ declare module "*.bmp";
 declare module "*.tiff";
 declare module "omit.js";
 declare module "react-color";
+declare module "qiniu-js"
 
 // google analytics interface
 interface GAFieldsObject {
