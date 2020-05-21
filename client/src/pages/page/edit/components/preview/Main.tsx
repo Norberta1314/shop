@@ -13,7 +13,7 @@ import Affix from "./components/Affix";
 import Goods from "./components/Goods";
 import MemberCard from "./components/MemberCard";
 import Coupon from "./components/Coupon";
-import Evaluation from "./components/Evaluation";
+import ShopHeader from "./components/ShopHeader";
 import styles from "./index.less";
 import { namespace } from "@/pages/page/edit/ModelType";
 import { newHeadline } from "@/pages/page/type/component/Headline";
@@ -26,7 +26,7 @@ import { newAffix } from "@/pages/page/type/component/Affix";
 import { newGoods } from "@/pages/page/type/component/Goods";
 import { newMemberCard } from "@/pages/page/type/component/MemberCard";
 import { newCoupon } from "@/pages/page/type/component/Coupon";
-import { newEvaluation } from "@/pages/page/type/component/Evaluation";
+import { newShopHEader } from "@/pages/page/type/component/ShopHeader";
 
 interface Prop {
   list: (PageComponents | null)[];
@@ -162,8 +162,8 @@ class Index extends React.Component<Prop, State> {
               <ReactIf vIf={item?.coupon}>
                 <Coupon coupon={item?.coupon || newCoupon}/>
               </ReactIf>
-              <ReactIf vIf={item?.evaluation}>
-                <Evaluation evaluation={item?.evaluation || newEvaluation}/>
+              <ReactIf vIf={item?.shopHeader}>
+                <ShopHeader shopHEader={item?.shopHeader || newShopHEader}/>
               </ReactIf>
             </li>
           ))

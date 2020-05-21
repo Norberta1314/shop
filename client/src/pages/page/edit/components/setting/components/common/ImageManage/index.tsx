@@ -8,8 +8,12 @@ import { connect } from "dva";
 import * as qiniu from "qiniu-js";
 import { imgUrlBase } from "../../../../../../../../../config/config";
 import deepCopy from "@/utils/deepCopy";
+import styles from "./index.less";
+import commonStyles from "../../../index.less";
+import ReactIf from "@/components/ReactIf";
 
 interface Props {
+  label?: string;
   dispatch?: Dispatch<any>;
   imgNumber: number;
   fileList: string[] | string;
@@ -18,7 +22,7 @@ interface Props {
 
 const Index: React.FC<Props> = (props) => {
     const [fileList, setFileList] = useState<Array<UploadFile<any>>>([]);
-    const {fileList: propsFileList, imgNumber, onChangeImage} = props;
+    const {fileList: propsFileList, imgNumber, onChangeImage, label} = props;
 
     function stringToUpliadFile(name: string): UploadFile<any> {
       return {
@@ -49,12 +53,13 @@ const Index: React.FC<Props> = (props) => {
 
     useEffect(() => {
       if (onChangeImage) {
-        if (typeof propsFileList === "string" && fileList.length !== 0) {
-          console.log(fileList);
-          onChangeImage(fileList[0].name);
+        console.log(typeof propsFileList);
+        if (typeof propsFileList === "string") {
+          if (fileList.length !== 0) {
+            onChangeImage(fileList[0].name);
+          }
         } else {
           const urlList = fileList.map((item) => item.name);
-          console.log("useEffect know", urlList);
           onChangeImage(urlList);
         }
       }
@@ -71,7 +76,7 @@ const Index: React.FC<Props> = (props) => {
       const ak = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l";
       //@ts-ignore
       const sk = "wZ5tDZqdvL8WcZCDLtMtfmpOcPkfG7Mxssd-3tQ9";
-      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:DLaJCxelm5uQus3Yr8wtns1rRyY=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU4OTkxNjg1MX0=";
+      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:tEOlG1XEJCkGl9sVxkT0X_8zMns=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU4OTk5NTk3MH0=";
       const {file} = options;
       const fileName = `${file.name}-${new Date().getTime()}`;
       const putExtra = {
@@ -114,7 +119,10 @@ const Index: React.FC<Props> = (props) => {
     }
 
     return (
-      <div>
+      <div className={`${styles.main} ${commonStyles.commonEdit}`}>
+        <ReactIf vIf={label}>
+          <div className={commonStyles.label}>{label}</div>
+        </ReactIf>
         <Upload
           listType="picture-card"
           fileList={fileList}

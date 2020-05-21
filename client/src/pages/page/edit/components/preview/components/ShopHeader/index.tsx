@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./index.less";
-import { Evaluation } from "@/pages/page/type/component/Evaluation";
+import { ShopHeader } from "@/pages/page/type/component/ShopHeader";
 
 interface Props {
-  evaluation?: Evaluation
+  shopHEader?: ShopHeader
 }
 
 interface Type extends React.FC<Props> {
@@ -11,7 +11,7 @@ interface Type extends React.FC<Props> {
 }
 
 const Index: Type = props => (
-  <div className={styles.main}> evaluation</div>
+  <div className={styles.main}> shopHeader</div>
 );
 
 export default Index;
