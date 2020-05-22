@@ -1,3 +1,5 @@
+
+# --- !Ups
 -- auto-generated definition
 create table good
 (
@@ -82,4 +84,12 @@ create table user
     update_time datetime             null,
     is_delete   tinyint(1) default 0 null
 );
+
+# ---!Downs
+DROP TABLE user;
+DROP TABLE shop;
+DROP TABLE good;
+DROP TABLE good_image_connect;
+DROP TABLE image;
+DROP TABLE page;
 
