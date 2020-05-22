@@ -8,7 +8,6 @@ export interface Page {
   components: (PageComponents | null)[];
 }
 
-
 export enum StyleType {
   default, self
 }
