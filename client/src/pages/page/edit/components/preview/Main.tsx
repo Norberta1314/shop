@@ -118,52 +118,54 @@ class Index extends React.Component<Prop, State> {
 
   render() {
     const {list, currentEditComponent} = this.props;
+    console.log(list)
     return (
       <ul className={styles.container}>
         {
-          list.map((item, index) => (
-            <li key={`item?.type${Math.random()}`}
-                ref={`component${index}`}
-                onClick={() => this.handleClickComponents(index)}
-                className={`${currentEditComponent === index ? styles.choosedLi : null}`}
-                draggable="true"
-                onDrag={e => this.handleDrag(e)}
-                onDragStart={e => this.handleDragStart(e, index)}
-                onDragEnd={e => this.handleDragEnd(e)}
-                onDragEnter={e => this.handleDragEnter(e, index)}
-                onDragLeave={e => this.handleDragLeave(e, index)}>
+          list && list.map((item, index) => (
+            <li
+              key={`item?.type${Math.random()}`}
+              ref={`component${index}`}
+              onClick={() => this.handleClickComponents(index)}
+              className={`${currentEditComponent === index ? styles.choosedLi : null}`}
+              draggable="true"
+              onDrag={e => this.handleDrag(e)}
+              onDragStart={e => this.handleDragStart(e, index)}
+              onDragEnd={e => this.handleDragEnd(e)}
+              onDragEnter={e => this.handleDragEnter(e, index)}
+              onDragLeave={e => this.handleDragLeave(e, index)}>
               <ReactIf vIf={item?.headline}>
-                <Headline headline={item?.headline || newHeadline}/>
+                <Headline headline={item?.headline || newHeadline} />
               </ReactIf>
               <ReactIf vIf={item?.image}>
-                <Image image={item?.image || newImage}/>
+                <Image image={item?.image || newImage} />
               </ReactIf>
               <ReactIf vIf={item?.carousel}>
-                <Carousel carousel={item?.carousel || newCarousel}/>
+                <Carousel carousel={item?.carousel || newCarousel} />
               </ReactIf>
               <ReactIf vIf={item?.showCase}>
-                <ShowCase showCase={item?.showCase || newShowCase}/>
+                <ShowCase showCase={item?.showCase || newShowCase} />
               </ReactIf>
               <ReactIf vIf={item?.notification}>
-                <Notification notification={item?.notification || newNotification}/>
+                <Notification notification={item?.notification || newNotification} />
               </ReactIf>
               <ReactIf vIf={item?.nav}>
-                <Nav nav={item?.nav || newNav}/>
+                <Nav nav={item?.nav || newNav} />
               </ReactIf>
               <ReactIf vIf={item?.affix}>
-                <Affix affix={item?.affix || newAffix}/>
+                <Affix affix={item?.affix || newAffix} />
               </ReactIf>
               <ReactIf vIf={item?.goods}>
-                <Goods goods={item?.goods || newGoods}/>
+                <Goods goods={item?.goods || newGoods} />
               </ReactIf>
               <ReactIf vIf={item?.memberCard}>
-                <MemberCard memberCard={item?.memberCard || newMemberCard}/>
+                <MemberCard memberCard={item?.memberCard || newMemberCard} />
               </ReactIf>
               <ReactIf vIf={item?.coupon}>
-                <Coupon coupon={item?.coupon || newCoupon}/>
+                <Coupon coupon={item?.coupon || newCoupon} />
               </ReactIf>
               <ReactIf vIf={item?.shopHeader}>
-                <ShopHeader shopHEader={item?.shopHeader || newShopHEader}/>
+                <ShopHeader shopHEader={item?.shopHeader || newShopHEader} />
               </ReactIf>
             </li>
           ))

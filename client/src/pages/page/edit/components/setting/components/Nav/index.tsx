@@ -38,9 +38,10 @@ const Index: React.FC<Props> = (props) => {
   }
 
   function handleChangeCell(cell: NavCell, index: number) {
-    console.log(cell)
+    console.log(cell);
     const localcells = deepCopy(nav.cells);
     localcells[index] = cell;
+    console.log(localcells);
     handleChange("cells", localcells);
   }
 
@@ -59,7 +60,7 @@ const Index: React.FC<Props> = (props) => {
       {
         nav.cells.map((cell, index) => (
           <Cell
-            key={cell.imgUrl}
+            key={`${cell.imgUrl}-${index}`}
             label={`第${index + 1}个导航`}
             cell={cell}
             onChangeCell={(e) => handleChangeCell(e, index)} />

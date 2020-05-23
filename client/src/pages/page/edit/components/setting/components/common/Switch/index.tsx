@@ -23,7 +23,7 @@ const Index: React.FC<Props> = props => {
         <Col>
           <div className={commonStyle.label}>{label}</div>
         </Col>
-        <Col>
+        <Col offset={1}>
           <Switch
             defaultChecked={defaultChecked}
             onChange={handleChangeSwitch} />

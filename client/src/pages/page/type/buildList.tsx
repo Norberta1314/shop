@@ -29,11 +29,12 @@ export const buildList = {
       type: PageComponentsType.Nav,
       title: "导航",
       icon: (<IconFont type="icon-nav" />),
-    }, {
-      type: PageComponentsType.Affix,
-      title: "固钉",
-      icon: (<IconFont type="icon-affix" />)
     },
+    // {
+    //   type: PageComponentsType.Affix,
+    //   title: "固钉",
+    //   icon: (<IconFont type="icon-affix" />)
+    // },
   ],
   marketList: [
     {

@@ -1,10 +1,10 @@
 export interface ShowCase {
   mode: number;
-  cells: Cell[];
+  cells: ShowCaseCell[];
 }
 
-export interface Cell {
-  url: string;
+export interface ShowCaseCell {
+  imgUrl: string;
   width: number;
   marginLeft: number;
 }
@@ -13,8 +13,8 @@ export enum ShowCaseMode {
   mode1, mode2,
 }
 
-export const newCell: Cell = {
-  url: "",
+export const newCell: ShowCaseCell = {
+  imgUrl: "",
   width: 115,
   marginLeft: 10,
 };

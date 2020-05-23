@@ -1,4 +1,4 @@
-import { Page, StyleType } from "@/pages/page/type/page";
+import { Page, PageMode, StyleType } from "@/pages/page/type/page";
 import { Dispatch } from "redux";
 import deepCopy from "@/utils/deepCopy";
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
@@ -16,6 +16,7 @@ export const pageEdit: PageEdit = {
     title: "",
     previewImg: "",
     styleType: StyleType.self,
+    mode: PageMode.self,
     components: [],
   },
   currentEditComponent: undefined,

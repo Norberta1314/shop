@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { newCell, ShowCase, ShowCaseMode } from "@/pages/page/type/component/ShowCase";
 import ChooseTable from "./ChooseTable";
 import Cell from "./Cell";
-import { Cell as CellType } from "@/pages/page/type/component/ShowCase";
+import { ShowCaseCell as CellType } from "@/pages/page/type/component/ShowCase";
 import { connect } from "dva";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { Dispatch } from "redux";

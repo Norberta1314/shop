@@ -39,9 +39,19 @@
 
         :global {
           .ant-card-cover {
-            img {
+            & > * {
+              text-align: center;
               height: 272px;
+              line-height: 272px;
+              font-size: 60px;
+              color: #ff6677;
+              background: #efefef;
             }
+          }
+
+          .cover-img {
+            display: inline-block;
+            height: 272px;
           }
 
           .ant-card-body {
@@ -59,7 +69,9 @@
           padding-left: 10px;
           color: white;
         }
+
       }
+
     }
   }
 }

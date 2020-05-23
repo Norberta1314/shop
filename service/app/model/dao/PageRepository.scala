@@ -6,11 +6,21 @@ import javax.inject.Inject
 import model.Page
 
 class PageRepository @Inject()(val dBConfig: DBConfig) extends Repository {
+
   import dBConfig.ctx._
+
   val page = quote(query[Page])
 
-  def findByShopId(id:Int) = run(quote{
-    page.filter(_.shop_id == lift(id))
+  def findByShopId(id: Int) = run(quote {
+    page.filter(_.shopId == lift(id))
   }).toList
 
+  def findById(id: Int) = run(quote {
+    page.filter(_.id == lift(id))
+  }).headOption
+
+  def updateById(id: Int, data: Page) = run(quote {
+    page.filter(_.id == lift(id))
+      .update(liftCaseClass(data))
+  })
 }

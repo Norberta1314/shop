@@ -39,7 +39,7 @@ const Index = ({image, dispatch}: Props) => {
     <div>
       <ImageManage
         imgNumber={1}
-        fileList={image.src}
+        fileList={image.imgUrl}
         onChangeImage={handleChangeImage} />
     </div>
   );

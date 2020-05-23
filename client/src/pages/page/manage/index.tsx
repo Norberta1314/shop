@@ -3,26 +3,35 @@ import { Spin } from "antd";
 import ReactIf from "@/components/ReactIf";
 import Group from "@/pages/page/manage/components/group";
 import styles from "./index.less";
-import { fetchCount, fetchPageList } from "@/pages/page/manage/service";
+import { fetchPageList } from "@/pages/page/manage/service";
 import { connect } from "dva";
 import { Result } from "@/type/Result";
+import { success } from "@/utils/request";
+import { Page, PageMode } from "@/pages/page/type/page";
 
 const PageManage = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [baseList, setBaseList] = useState([]);
-  const [selfList, setSelfList] = useState([]);
+  const [baseList, setBaseList] = useState<Page[]>([]);
+  const [selfList, setSelfList] = useState<Page[]>([]);
   useEffect(() => {
-    fetchPageList(1).then((r: Result<any>) => {
-      if (r?.success) {
-        setBaseList(r?.result?.baseList);
-        setSelfList(r?.result?.selfList);
+    fetchPageList(1).then((r: Result<Page[]>) => {
+      if (r.code === success) {
+        const baseList: Page[] = [];
+        const selfList: Page[] = [];
+        r.data.map((page) => {
+          if (page.mode === PageMode.default) {
+            baseList.push(page);
+          } else {
+            selfList.push(page);
+          }
+        });
+        setBaseList(baseList);
+        setSelfList(selfList);
       }
       setLoading(false);
     });
 
-    fetchCount(3).then((r) => {
-      console.log(r);
-    });
+
   }, []);
 
   return (

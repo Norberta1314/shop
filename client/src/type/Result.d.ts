@@ -1,4 +1,6 @@
+import { success, fail } from "@/utils/request";
+
 export interface Result<S> {
-  result: S;
-  success?: 'OK';
+  data: S;
+  code?: success | fail;
 }

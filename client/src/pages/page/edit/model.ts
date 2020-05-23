@@ -1,16 +1,22 @@
-import { Reducer } from "redux";
-import { routerRedux } from "dva";
+import { Reducer, Dispatch } from "redux";
 import { Effect } from "@/type/Effect";
 import { namespace, pageEdit, PageEdit } from "@/pages/page/edit/ModelType";
 import { newPageComponents } from "@/pages/page/type/pageComponents";
 import deepCopy from "@/utils/deepCopy";
+import { History } from "history";
+import { fetchPage, updatePage } from "@/pages/page/edit/service";
+import getQueryByName from "@/utils/getQueryByName";
+import { routerRedux } from "dva";
 
 
 export interface ModelType {
   namespace: string;
   state: PageEdit;
+  subscriptions: any;
   effects: {
-    goToEdit: Effect<PageEdit>;
+    fetchPage: Effect<PageEdit>;
+    goToManage: Effect<PageEdit>;
+    updatePage: Effect<PageEdit>;
   };
   reducers: {
     save: Reducer<PageEdit>;
@@ -24,10 +30,43 @@ export interface ModelType {
 const Model: ModelType = {
   namespace,
   state: pageEdit,
+  subscriptions: {
+    setup({dispatch, history}: { dispatch: Dispatch<any>; history: History }) {
+      return history.listen(({pathname, search}) => {
+        console.log(pathname, search);
+        if (pathname === "/page/edit") {
+          const id = getQueryByName(search, "id");
+          dispatch({
+            type: "fetchPage",
+            payload: {
+              id
+            }
+          });
+        }
+      });
+    }
+  },
   effects: {
-    * goToEdit({payload}, {put}) {
-      yield put(routerRedux.push(`/page/edit?id=${payload?.id}`));
+    * fetchPage({payload}, {call, put}) {
+      const {id} = payload;
+      const data = yield call(fetchPage, id);
+      yield put({
+        type: "save",
+        payload: {
+          page: data.data
+        }
+      });
     },
+    * goToManage(_, {put}) {
+      yield put(routerRedux.push("/page/manage"));
+    },
+    * updatePage(_, {call, select}) {
+      const page = yield select(
+        (state) => state.pageEdit.page
+      );
+      console.log(page);
+      yield call(updatePage, page);
+    }
   },
   reducers: {
     save(state, {payload}) {

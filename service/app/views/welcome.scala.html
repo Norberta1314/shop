@@ -1,4 +1,4 @@
-@(message: String, style: String = "scala") 
+@(message: String, style: String = "scala")
 
 @defining(play.core.PlayVersion.current) { version =>
 
@@ -14,7 +14,7 @@
   <h1>Welcome to Play</h1>
 
   <p>
-    Congratulations, you’ve just created a new Play application. This page will help you with the next few steps.
+    Congratulations, you’ve just created a new Play application. This model.page will help you with the next few steps.
   </p>
 
   <blockquote>
@@ -23,14 +23,14 @@
     </p>
   </blockquote>
 
-  <h2>Why do you see this page?</h2>
+  <h2>Why do you see this model.page?</h2>
 
     <p>
       The <code>conf/routes</code> file defines a route that tells Play to invoke the <code>HomeController.index</code> action
       whenever a browser requests the <code>/</code> URI using the GET method:
     </p>
 
-    <pre><code># Home page
+    <pre><code># Home model.page
 GET     /               controllers.HomeController.index</code></pre>
 
     <p>
@@ -69,7 +69,7 @@ GET     /               controllers.HomeController.index</code></pre>
 
     <h2>Async Controller</h2>
 
-    Now that you've seen how Play renders a page, take a look at <code>AsyncController.scala</code>, which shows how to do asynchronous programming when handling a request.  The code is almost exactly the same as <code>HomeController.scala</code>, but instead of returning <code>Result</code>, the action returns <code>Future[Result]</code> to Play.  When the execution completes, Play can use a thread to render the result without blocking the thread in the mean time.
+    Now that you've seen how Play renders a model.page, take a look at <code>AsyncController.scala</code>, which shows how to do asynchronous programming when handling a request.  The code is almost exactly the same as <code>HomeController.scala</code>, but instead of returning <code>Result</code>, the action returns <code>Future[Result]</code> to Play.  When the execution completes, Play can use a thread to render the result without blocking the thread in the mean time.
 
     <p>
         <a href="@routes.AsyncController.message">Click here for the AsyncController action!</a>
@@ -97,18 +97,18 @@ GET     /               controllers.HomeController.index</code></pre>
 
   <p>
     For more information on the various commands you can run on Play, i.e. running tests and packaging applications for production, see <a href="https://playframework.com/documentation/@version/PlayConsole">Using the Play console</a>.
-  </p>  
+  </p>
 
   <h2>Need to set up an IDE?</h2>
 
   <p>
-      You can start hacking your application right now using any text editor. Any changes will be automatically reloaded at each page refresh, 
+      You can start hacking your application right now using any text editor. Any changes will be automatically reloaded at each model.page refresh,
       including modifications made to Scala source files.
   </p>
 
   <p>
-      If you want to set-up your application in <strong>IntelliJ IDEA</strong> or any other Java IDE, check the 
-      <a href="https://www.playframework.com/documentation/@version/IDE">Setting up your preferred IDE</a> page.
+      If you want to set-up your application in <strong>IntelliJ IDEA</strong> or any other Java IDE, check the
+      <a href="https://www.playframework.com/documentation/@version/IDE">Setting up your preferred IDE</a> model.page.
   </p>
 
   <h2>Need more documentation?</h2>
@@ -137,7 +137,7 @@ GET     /               controllers.HomeController.index</code></pre>
   <p>
     Gitter is a real time chat channel, like IRC. The <a href="https://gitter.im/playframework/playframework">playframework/playframework</a>  channel is used by Play users to discuss the ins and outs of writing great Play applications.
   </p>
- 
+
 </article>
 
 <aside>
@@ -158,7 +158,7 @@ GET     /               controllers.HomeController.index</code></pre>
     <li><a href="https://groups.google.com/group/play-framework">Mailing List</a></li>
     <li><a href="https://gitter.im/playframework/playframework">Gitter Channel</a></li>
   </ul>
-  
+
 </aside>
 
 </div>

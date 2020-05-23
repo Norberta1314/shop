@@ -76,7 +76,7 @@ const Index: React.FC<Props> = (props) => {
       const ak = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l";
       //@ts-ignore
       const sk = "wZ5tDZqdvL8WcZCDLtMtfmpOcPkfG7Mxssd-3tQ9";
-      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:tEOlG1XEJCkGl9sVxkT0X_8zMns=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU4OTk5NTk3MH0=";
+      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:qdOnL60VfRAJwcg1WkbSzjkyuUA=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MDI1NTc5NX0=";
       const {file} = options;
       const fileName = `${file.name}-${new Date().getTime()}`;
       const putExtra = {

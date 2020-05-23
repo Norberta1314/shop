@@ -1,6 +1,6 @@
 import React from "react";
 import commonStyles from "../../../index.less";
-import { Radio } from "antd";
+import { Col, Radio, Row } from "antd";
 import { CheckboxOptionType } from "antd/lib/checkbox";
 import { CheckboxValueType } from "antd/lib/checkbox/Group";
 import { RadioChangeEvent } from "antd/lib/radio";
@@ -17,16 +17,23 @@ const Index: React.FC<Props> = (props) => {
 
   return (
     <div className={commonStyles.commonEdit}>
-      <div className={commonStyles.label}>{label}</div>
-      <Radio.Group
-        value={value}
-        onChange={onChangeRadio}>
-        {options.map((item, index) => (
-          <Radio.Button
-            key={item.label || index}
-            value={item.value}>{item.label}</Radio.Button>
-        ))}
-      </Radio.Group>
+      <Row align="middle">
+        <Col>
+          <div className={commonStyles.label}>{label}</div>
+        </Col>
+        <Col offset={1}>
+          <Radio.Group
+            value={value}
+            onChange={onChangeRadio}>
+            {options.map((item, index) => (
+              <Radio.Button
+                key={`${item.value}-${index}`}
+                value={item.value}>{item.label}</Radio.Button>
+            ))}
+          </Radio.Group>
+        </Col>
+      </Row>
+
     </div>
   );
 };

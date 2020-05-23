@@ -53,4 +53,6 @@ const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
 });
 
+export const success = 1;
+export const fail = -1;
 export default request;

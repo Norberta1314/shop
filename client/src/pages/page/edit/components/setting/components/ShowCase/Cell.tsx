@@ -1,14 +1,14 @@
 import React from "react";
 import commonStyle from "../../index.less";
 import ImageManage from "../common/ImageManage";
-import { Cell } from "@/pages/page/type/component/ShowCase";
+import { ShowCaseCell } from "@/pages/page/type/component/ShowCase";
 import deepCopy from "@/utils/deepCopy";
 import InputNumber from "../common/InputNumber";
 
 interface Props {
   label: string;
-  cell: Cell;
-  onChangeCell: (value: Cell) => void;
+  cell: ShowCaseCell;
+  onChangeCell: (value: ShowCaseCell) => void;
 }
 
 const Index: React.FC<Props> = (props) => {
@@ -33,7 +33,7 @@ const Index: React.FC<Props> = (props) => {
       <div className={commonStyle.label}>{label}</div>
       <ImageManage
         imgNumber={1}
-        fileList={cell.url}
+        fileList={cell.imgUrl}
         onChangeImage={handleChangeImage} />
       <InputNumber
         label="左边距"
