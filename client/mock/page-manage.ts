@@ -21,5 +21,5 @@ const pageList = (req: Request, res: Response) => {
 }
 
 export default {
-  'GET /api/page/list': pageList,
+  'GET /api/page/lists': pageList,
 }

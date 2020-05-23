@@ -186,6 +186,10 @@ export default {
       changeOrigin: true,
       pathRewrite: {"^/server": ""},
     },
+    "/api/": {
+      target: "http://localhost:9000",
+      changeOrigin: true,
+    }
   },
 } as IConfig;
 
