@@ -8,19 +8,19 @@ import ProLayout, {
   BasicLayoutProps as ProLayoutProps,
   Settings,
   DefaultFooter,
-} from '@ant-design/pro-layout';
-import { formatMessage } from 'umi-plugin-react/locale';
-import React, { useEffect } from 'react';
-import Link from 'umi/link';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
-import { GithubOutlined } from '@ant-design/icons';
-import { Result, Button } from 'antd';
-import Authorized from '@/utils/Authorized';
-import RightContent from '@/components/GlobalHeader/RightContent';
-import { ConnectState } from '@/models/connect';
-import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
-import logo from '../assets/logo.svg';
+} from "@ant-design/pro-layout";
+import { formatMessage } from "umi-plugin-react/locale";
+import React, { useEffect } from "react";
+import Link from "umi/link";
+import { Dispatch } from "redux";
+import { connect } from "dva";
+import { GithubOutlined } from "@ant-design/icons";
+import { Result, Button } from "antd";
+import Authorized from "@/utils/Authorized";
+import RightContent from "@/components/GlobalHeader/RightContent";
+import { ConnectState } from "@/models/connect";
+import { isAntDesignPro, getAuthorityFromRouter } from "@/utils/utils";
+import logo from "../assets/logo.svg";
 
 const noMatch = (
   <Result
@@ -34,17 +34,19 @@ const noMatch = (
     }
   />
 );
+
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
   };
-  route: ProLayoutProps['route'] & {
+  route: ProLayoutProps["route"] & {
     authority: string[];
   };
   settings: Settings;
   dispatch: Dispatch;
 }
-export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
+
+export type BasicLayoutContext = { [K in "location"]: BasicLayoutProps[K] } & {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
   };
@@ -55,37 +57,41 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
 
 const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
   menuList.map(item => {
-    const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
+    const localItem = {
+      ...item,
+      children: item.children ? menuDataRender(item.children) : []
+    };
     return Authorized.check(item.authority, localItem, null) as MenuDataItem;
   });
 
 const defaultFooterDom = (
   <DefaultFooter
+    style={{background: "#FFF8F2"}}
     copyright="2019 蚂蚁金服体验技术部出品"
     links={[
       {
-        key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
-        href: 'https://pro.ant.design',
+        key: "Ant Design Pro",
+        title: "Ant Design Pro",
+        href: "https://pro.ant.design",
         blankTarget: true,
       },
       {
-        key: 'github',
+        key: "github",
         title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        href: "https://github.com/ant-design/ant-design-pro",
         blankTarget: true,
       },
       {
-        key: 'Ant Design',
-        title: 'Ant Design',
-        href: 'https://ant.design',
+        key: "Ant Design",
+        title: "Ant Design",
+        href: "https://ant.design",
         blankTarget: true,
       },
     ]}
   />
 );
 
-const footerRender: BasicLayoutProps['footerRender'] = () => {
+const footerRender: BasicLayoutProps["footerRender"] = () => {
   if (!isAntDesignPro()) {
     return defaultFooterDom;
   }
@@ -95,11 +101,14 @@ const footerRender: BasicLayoutProps['footerRender'] = () => {
       {defaultFooterDom}
       <div
         style={{
-          padding: '0px 24px 24px',
-          textAlign: 'center',
+          padding: "0px 24px 24px",
+          textAlign: "center",
         }}
       >
-        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.netlify.com"
+          target="_blank"
+          rel="noopener noreferrer">
           <img
             src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
             width="82px"
@@ -117,7 +126,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     children,
     settings,
     location = {
-      pathname: '/',
+      pathname: "/",
     },
   } = props;
   /**
@@ -127,7 +136,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   useEffect(() => {
     if (dispatch) {
       dispatch({
-        type: 'user/fetchCurrent',
+        type: "user/fetchCurrent",
       });
     }
   }, []);
@@ -138,13 +147,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const handleMenuCollapse = (payload: boolean): void => {
     if (dispatch) {
       dispatch({
-        type: 'global/changeLayoutCollapsed',
+        type: "global/changeLayoutCollapsed",
         payload,
       });
     }
   }; // get children authority
 
-  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
+  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || "/") || {
     authority: undefined,
   };
   return (
@@ -167,15 +176,15 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       }}
       breadcrumbRender={(routers = []) => [
         {
-          path: '/',
-          breadcrumbName: '首页',
+          path: "/",
+          breadcrumbName: "首页",
         },
         ...routers,
       ]}
       itemRender={(route, params, routes, paths) => {
         const first = routes.indexOf(route) === 0;
         return first ? (
-          <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+          <Link to={paths.join("/")}>{route.breadcrumbName}</Link>
         ) : (
           <span>{route.breadcrumbName}</span>
         );
@@ -186,14 +195,16 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       {...props}
       {...settings}
     >
-      <Authorized authority={authorized!.authority} noMatch={noMatch}>
+      <Authorized
+        authority={authorized!.authority}
+        noMatch={noMatch}>
         {children}
       </Authorized>
     </ProLayout>
   );
 };
 
-export default connect(({ global, settings }: ConnectState) => ({
+export default connect(({global, settings}: ConnectState) => ({
   collapsed: global.collapsed,
   settings,
 }))(BasicLayout);

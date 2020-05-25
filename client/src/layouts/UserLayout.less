@@ -1,5 +1,11 @@
 @import '~antd/es/style/themes/default.less';
 
+:global {
+  .ant-layout-footer {
+    background: @layout-body-background;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -13,6 +19,7 @@
   height: 40px;
   line-height: 44px;
   text-align: right;
+
   :global(.ant-dropdown-trigger) {
     margin-right: 24px;
   }
@@ -43,6 +50,7 @@
 .header {
   height: 44px;
   line-height: 44px;
+
   a {
     text-decoration: none;
   }
@@ -68,4 +76,8 @@
   margin-bottom: 40px;
   color: @text-color-secondary;
   font-size: @font-size-base;
+}
+
+.ant-layout-footer {
+  background: @layout-body-background;
 }

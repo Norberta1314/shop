@@ -18,3 +18,8 @@ GET         /api/findId                 controllers.UserController.findById(id: 
 GET         /api/page/list              controllers.PageController.findByShopId(id:Int)
 GET         /api/page/findById          controllers.PageController.findById(id:Int)
 POST        /api/page/updateById        controllers.PageController.updateById
+
+
+POST        /api/good/insert            controllers.GoodController.insert
+GET         /api/good/list              controllers.GoodController.findById(id:Int)
+POST        /api/good/update            controllers.GoodController.updateById

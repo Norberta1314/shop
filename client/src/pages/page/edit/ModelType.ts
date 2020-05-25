@@ -8,6 +8,8 @@ export const namespace = "pageEdit";
 export interface PageEdit {
   page?: Page;
   currentEditComponent?: number;
+  dragEnd: number | null;
+  dragStart: number | null;
 }
 
 export const pageEdit: PageEdit = {
@@ -20,6 +22,8 @@ export const pageEdit: PageEdit = {
     components: [],
   },
   currentEditComponent: undefined,
+  dragEnd: null,
+  dragStart: null
 };
 
 declare type FirstUpperCase = (e: string) => string
@@ -31,7 +35,7 @@ export function changeEditCompoennt(dispatch: Dispatch<any>, origin: any, attrib
     local[attribute] = e;
   }
   const name = firstUpperCase(PageComponentsType[type]);
-  console.log(PageComponentsType[type], name);
+  // console.log(PageComponentsType[type], name);
   dispatch({
     type: `${namespace}/editComponent`,
     payload: {

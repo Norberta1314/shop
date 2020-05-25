@@ -21,6 +21,9 @@ class PageRepository @Inject()(val dBConfig: DBConfig) extends Repository {
 
   def updateById(id: Int, data: Page) = run(quote {
     page.filter(_.id == lift(id))
-      .update(liftCaseClass(data))
+      .update(
+        _.title -> lift(data.title),
+        _.styleType -> lift(data.styleType),
+        _.components -> lift(data.components))
   })
 }

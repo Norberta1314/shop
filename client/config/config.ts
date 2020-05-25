@@ -115,6 +115,11 @@ export default {
               icon: "smile",
               path: "/page/manage",
               component: "./page/manage",
+            }, {
+              name: "商品管理",
+              icon: "smile",
+              path: "/good/manage",
+              component: "./good/manage",
             },
             {
               component: "./404",

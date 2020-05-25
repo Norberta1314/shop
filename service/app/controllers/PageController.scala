@@ -1,9 +1,7 @@
 package controllers
 
-import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
 import javax.inject._
 import model.Page
-import model.page.Component
 import services.PageService
 import play.api.mvc._
 import play.api.libs.json.Json
@@ -20,13 +18,13 @@ class PageController @Inject()(pageService: PageService, cc: ControllerComponent
   def findById(id: Int) = Action {
     pageService.findPageById(id) match {
       case Some(page) =>
-        val component = Json.parse(page.components.toString()).as[Component]
+//        val component = Json.parse(page.components.toString()).as[Component]
         jsonSuccess(page)
     }
   }
 
   def updateById = Action(parse.json) { request =>
-    println(request.toString())
+    println(request.body.toString())
     val page = Json.parse(request.body.toString()).as[Page]
 
     pageService.updateById(page.id, page) match {

@@ -65,6 +65,7 @@ const Index: React.FC<Props> = (props) => {
       {
         showCase.cells.map((cell, index) => (
           <Cell
+            key={`${cell.imgUrl}-${index}`}
             label={`区域${index + 1}`}
             cell={cell}
             onChangeCell={(e) => handleChangeCell(e, index)} />

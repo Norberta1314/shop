@@ -15,7 +15,7 @@ interface Props {
 const Index = ({image, dispatch}: Props) => {
   function handleChangeImage(value: (string | undefined)[] | string | undefined) {
     if (typeof value === "string") {
-      uploadImage("src", value);
+      uploadImage("imgUrl", value);
     }
   }
 

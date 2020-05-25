@@ -10,8 +10,9 @@ interface Props {
 const Index: React.FC<Props> = props => (
   <div className={styles.main}>
     {
-      props.showCase.cells.map((cell) => (
+      props.showCase.cells.map((cell, index) => (
         <div
+          key={`${cell.imgUrl}-${index}`}
           style={{
             marginLeft: cell.marginLeft,
             width: cell.width

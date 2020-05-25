@@ -1,5 +1,5 @@
 import { Reducer, Dispatch } from "redux";
-import { Effect } from "@/type/Effect";
+import { Effect } from "dva";
 import { namespace, pageEdit, PageEdit } from "@/pages/page/edit/ModelType";
 import { newPageComponents } from "@/pages/page/type/pageComponents";
 import deepCopy from "@/utils/deepCopy";
@@ -7,6 +7,11 @@ import { History } from "history";
 import { fetchPage, updatePage } from "@/pages/page/edit/service";
 import getQueryByName from "@/utils/getQueryByName";
 import { routerRedux } from "dva";
+import { ConnectState } from "@/models/connect";
+import { Page } from "@/pages/page/type/page";
+import { Modal } from "antd";
+import { CheckOutlined } from "@ant-design/icons/lib";
+import React from "react";
 
 
 export interface ModelType {
@@ -14,9 +19,9 @@ export interface ModelType {
   state: PageEdit;
   subscriptions: any;
   effects: {
-    fetchPage: Effect<PageEdit>;
-    goToManage: Effect<PageEdit>;
-    updatePage: Effect<PageEdit>;
+    fetchPage: Effect;
+    goToManage: Effect;
+    updatePage: Effect;
   };
   reducers: {
     save: Reducer<PageEdit>;
@@ -24,6 +29,7 @@ export interface ModelType {
     addComponent: Reducer<PageEdit>;
     editComponent: Reducer<PageEdit>;
     dragComponent: Reducer<PageEdit>;
+    deleteComponent: Reducer<PageEdit>;
   };
 }
 
@@ -49,23 +55,39 @@ const Model: ModelType = {
   effects: {
     * fetchPage({payload}, {call, put}) {
       const {id} = payload;
-      const data = yield call(fetchPage, id);
+      const page: Page = yield call(fetchPage, id);
       yield put({
         type: "save",
         payload: {
-          page: data.data
+          page
         }
       });
     },
     * goToManage(_, {put}) {
       yield put(routerRedux.push("/page/manage"));
     },
-    * updatePage(_, {call, select}) {
+    * updatePage({payload}, {call, select}) {
       const page = yield select(
-        (state) => state.pageEdit.page
+        (state: ConnectState) => state.pageEdit.page
       );
-      console.log(page);
-      yield call(updatePage, page);
+      if (page) {
+        yield call(updatePage, page);
+        Modal.confirm({
+          title: "保存成功",
+          icon: <CheckOutlined />,
+          content: "恭喜本次修改成功！",
+          okText: "返回上一页",
+          cancelText: "继续编辑",
+          onOk() {
+            payload.dispatch({
+              type: `${namespace}/goToManage`
+            });
+          },
+          onCancel() {
+            console.log("Cancel");
+          },
+        });
+      }
     }
   },
   reducers: {
@@ -75,7 +97,7 @@ const Model: ModelType = {
         ...payload
       };
     },
-    savePage(state, {payload}) {
+    savePage(state = pageEdit, {payload}) {
       return {
         ...state,
         page: {
@@ -84,17 +106,22 @@ const Model: ModelType = {
         }
       };
     },
-    addComponent(state, {payload}) {
+    addComponent(state = pageEdit, {payload}) {
       const page = deepCopy(state?.page);
+      const {type, position} = payload;
       if (page) {
-        page.components.push(newPageComponents(payload.type));
+        if (!Array.isArray(page.components)) {
+          page.components = [];
+        }
+        const index = position ?? page.components.length;
+        page.components.splice(index + 1, 0, newPageComponents(type));
       }
       return {
         ...state,
         page,
       };
     },
-    editComponent(state, {payload}) {
+    editComponent(state = pageEdit, {payload}) {
       if (state?.page?.components) {
         const page = deepCopy(state?.page);
         if (state?.currentEditComponent !== undefined) {
@@ -110,7 +137,7 @@ const Model: ModelType = {
         ...state
       };
     },
-    dragComponent(state, {payload}) {
+    dragComponent(state = pageEdit, {payload}) {
       if (state && state.page?.components) {
         const page = deepCopy(state.page);
         const {dragStart, dragEnd} = payload;
@@ -124,11 +151,26 @@ const Model: ModelType = {
         }
         return {
           ...state,
-          page
+          page,
+          dragStart: null,
+          dragEnd: null
         };
       }
       return {
         ...state
+      };
+    },
+    deleteComponent(state = pageEdit) {
+      const page = deepCopy(state.page);
+      if (page?.components && state.dragStart !== null) {
+        page.components.splice(state.dragStart, 1);
+      }
+
+      return {
+        ...state,
+        page,
+        dragStart: null,
+        dragEnd: null
       };
     }
   }

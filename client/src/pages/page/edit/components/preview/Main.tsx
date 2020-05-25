@@ -74,6 +74,15 @@ class Index extends React.Component<Prop, State> {
       }
     }
     this.setState(() => ({dragStart: index}));
+    const {dispatch} = this.props;
+    if (dispatch) {
+      dispatch({
+        type: `${namespace}/save`,
+        payload: {
+          dragStart: index
+        }
+      });
+    }
   }
 
   handleDragEnd(e: React.DragEvent<HTMLLIElement>) {
@@ -109,16 +118,25 @@ class Index extends React.Component<Prop, State> {
         refs.classList.remove("dragEnter");
       }
     }
+
+    const {dispatch} = this.props;
+    if (dispatch) {
+      dispatch({
+        type: `${namespace}/save`,
+        payload: {
+          dragEnd: this.state.dragEnd
+        }
+      });
+    }
   }
 
-  // eslint-disable-next-line class-methods-use-this
+
   handleDrag(e: React.DragEvent<HTMLLIElement>) {
     e.preventDefault();
   }
 
   render() {
     const {list, currentEditComponent} = this.props;
-    console.log(list)
     return (
       <ul className={styles.container}>
         {

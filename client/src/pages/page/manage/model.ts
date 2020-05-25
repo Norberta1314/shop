@@ -20,24 +20,11 @@ export interface ModelType {
 }
 
 const Model: ModelType = {
-  namespace: 'pageManage',
+  namespace: "pageManage",
   state: {},
-  // subscriptions: {
-  //   setup({dispatch, history}: { dispatch: Dispatch<any>; history: History }) {
-  //     return history.listen(({pathname, search}) => {
-  //       console.log(pathname, search)
-  //       // dispatch({
-  //       //   type: 'save',
-  //       //   payload: {
-  //       //
-  //       //   }
-  //       // })
-  //     })
-  //   }
-  // },
   effects: {
     * goToEdit({payload}, {_, put}) {
-      yield put(routerRedux.push(`/page/edit?id=${payload?.id}`))
+      yield put(routerRedux.push(`/page/edit?id=${payload?.id}`));
     }
   },
   reducers: {
@@ -45,7 +32,7 @@ const Model: ModelType = {
       return {
         ...state,
         ...payload
-      }
+      };
     }
   }
 };

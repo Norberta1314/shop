@@ -20,7 +20,7 @@ interface Props {
   onChangeImage?: (value: (string | undefined)[] | string | undefined) => any;
 }
 
-const Index: React.FC<Props> = (props) => {
+const ImageManage: React.FC<Props> = (props) => {
     const [fileList, setFileList] = useState<Array<UploadFile<any>>>([]);
     const {fileList: propsFileList, imgNumber, onChangeImage, label} = props;
 
@@ -53,7 +53,6 @@ const Index: React.FC<Props> = (props) => {
 
     useEffect(() => {
       if (onChangeImage) {
-        console.log(typeof propsFileList);
         if (typeof propsFileList === "string") {
           if (fileList.length !== 0) {
             onChangeImage(fileList[0].name);
@@ -76,9 +75,9 @@ const Index: React.FC<Props> = (props) => {
       const ak = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l";
       //@ts-ignore
       const sk = "wZ5tDZqdvL8WcZCDLtMtfmpOcPkfG7Mxssd-3tQ9";
-      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:qdOnL60VfRAJwcg1WkbSzjkyuUA=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MDI1NTc5NX0=";
+      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:sRAHYVDUo152vGjxMrJ737SsKno=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MDQxNTkyNH0=";
       const {file} = options;
-      const fileName = `${file.name}-${new Date().getTime()}`;
+      const fileName = `${new Date().getTime()}-${file.name}`;
       const putExtra = {
         fname: file.name,                          //原文件名
         params: {},                         //用来放置自定义变量
@@ -135,4 +134,4 @@ const Index: React.FC<Props> = (props) => {
   }
 ;
 
-export default connect()(Index);
+export default connect()(ImageManage);

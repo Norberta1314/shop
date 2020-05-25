@@ -1,4 +1,5 @@
 @import "../../../../../default";
+@import '~antd/es/style/themes/default.less';
 
 @li-choose-color: rgba(108, 124, 254, 0.58);
 
@@ -23,6 +24,7 @@
 }
 
 .main {
+  position: relative;
   flex: 1;
   height: 100%;
   overflow: scroll;
@@ -31,7 +33,7 @@
     width: 375px;
     height: auto;
     min-height: 667px;
-    margin: auto;
+    margin: 20px auto;
     padding: 0;
     background: white;
 
@@ -78,5 +80,35 @@
         content: '';
       }
     }
+  }
+
+  .deleteWarp {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    top: @layout-header-height + 30;
+    right: 435px;
+    background: #efefef;
+    font-size: 30px;
+    color: @light-color;
+    text-align: center;
+    border-radius: 10px;
+
+    .deleteIcon {
+      display: inline-block;
+      width: 50%;
+      height: 50%;
+      background-image: url("http://shopimage.norberta.me/delete.png");
+      background-size: contain;
+
+      &:hover {
+        background-image: url("http://shopimage.norberta.me/delete-hover.png");
+      }
+    }
+
+    .deleteIcon_hover {
+      background-image: url("http://shopimage.norberta.me/delete-hover.png");
+    }
+
   }
 }

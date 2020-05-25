@@ -6,14 +6,16 @@ import { connect } from "dva";
 import { namespace, PageEdit } from "@/pages/page/edit/ModelType";
 import { Page } from "@/pages/page/type/page";
 import { Dispatch } from "redux";
+import { Loading } from "@/models/connect";
 
 interface Props {
   page?: Page;
   dispatch?: Dispatch<any>;
+  updateLoading?: boolean;
 }
 
 const Header: React.FC<Props> = (props) => {
-  const {page, dispatch} = props;
+  const {page, dispatch, updateLoading} = props;
 
   function goToManage() {
     if (dispatch) {
@@ -26,7 +28,10 @@ const Header: React.FC<Props> = (props) => {
   function updatePage() {
     if (dispatch) {
       dispatch({
-        type: `${namespace}/updatePage`
+        type: `${namespace}/updatePage`,
+        payload: {
+          dispatch
+        }
       });
     }
   }
@@ -46,18 +51,19 @@ const Header: React.FC<Props> = (props) => {
               onClick={goToManage}
               className={styles.button}>取消</Button>
             <Button
+              loading={updateLoading}
               onClick={updatePage}
               className={`${styles.button} ${styles.buttonSave}`}
               type="primary">保存</Button>
           </div>
         </Col>
-
       </Row>
-
     </header>
   );
 };
 
-export default connect(({pageEdit}: { pageEdit: PageEdit }) => ({
-  page: pageEdit.page
-}))(Header);
+export default connect(
+  ({pageEdit, loading}: { pageEdit: PageEdit; loading: Loading }) => ({
+    page: pageEdit.page,
+    updateLoading: loading.effects[`${namespace}/updatePage`]
+  }))(Header);

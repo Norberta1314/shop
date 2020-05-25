@@ -5,6 +5,7 @@ import { GlobalModelState } from './global';
 import { DefaultSettings as SettingModelState } from '../../config/defaultSettings';
 import { UserModelState } from './user';
 import { StateType } from './login';
+import { PageEdit } from "@/pages/page/edit/ModelType";
 
 export { GlobalModelState, SettingModelState, UserModelState };
 
@@ -25,6 +26,7 @@ export interface ConnectState {
   loading: Loading;
   settings: SettingModelState;
   user: UserModelState;
+  pageEdit: PageEdit;
   login: StateType;
 }
 
