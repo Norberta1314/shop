@@ -8,13 +8,14 @@ import { Affix, newAffix } from "@/pages/page/type/component/Affix";
 import { Goods, newGoods } from "@/pages/page/type/component/Goods";
 import { MemberCard, newMemberCard } from "@/pages/page/type/component/MemberCard";
 import { Coupon, newCoupon } from "@/pages/page/type/component/Coupon";
-import { ShopHeader, newShopHEader } from "@/pages/page/type/component/ShopHeader";
+import { ShopHeader, newShopHeader } from "@/pages/page/type/component/ShopHeader";
+import Divider, { newDivider } from "@/pages/page/type/component/Divider";
 
 export enum PageComponentsType {
   // eslint-disable-next-line no-shadow
   Headline, Image, Carousel, ShowCase, Notification, Nav, Affix,
   // eslint-disable-next-line no-shadow
-  Goods, MemberCard, Coupon, ShopHeader,
+  Goods, MemberCard, Coupon, ShopHeader, Divider
 }
 
 export interface PageComponents {
@@ -30,6 +31,7 @@ export interface PageComponents {
   memberCard?: MemberCard;
   coupon?: Coupon;
   shopHeader?: ShopHeader;
+  divider?: Divider;
 }
 
 export const newPageComponents: (type: number) => (PageComponents | null) = (type: number) => {
@@ -87,7 +89,12 @@ export const newPageComponents: (type: number) => (PageComponents | null) = (typ
     case PageComponentsType.ShopHeader:
       return {
         type,
-        shopHeader: newShopHEader
+        shopHeader: newShopHeader
+      };
+    case PageComponentsType.Divider:
+      return {
+        type,
+        divider: newDivider,
       };
     default:
       return null;

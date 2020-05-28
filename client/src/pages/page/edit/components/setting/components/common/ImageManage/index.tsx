@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Upload } from "antd";
+import { Col, Row, Upload } from "antd";
 import { RcCustomRequestOptions } from "antd/lib/upload/interface";
 import { UploadFile } from "antd/lib/upload/interface";
 import { PlusOutlined } from "@ant-design/icons";
@@ -17,7 +17,7 @@ interface Props {
   dispatch?: Dispatch<any>;
   imgNumber: number;
   fileList: string[] | string;
-  onChangeImage?: (value: (string | undefined)[] | string | undefined) => any;
+  onChangeImage: (value: (string | undefined)[] | string | undefined) => any;
 }
 
 const ImageManage: React.FC<Props> = (props) => {
@@ -40,6 +40,8 @@ const ImageManage: React.FC<Props> = (props) => {
         if (propsFileList.trim()) {
           const item: UploadFile<any>[] = [stringToUpliadFile(propsFileList)];
           setFileList(item);
+        } else {
+          setFileList([]);
         }
       } else {
         if (propsFileList) {
@@ -47,22 +49,12 @@ const ImageManage: React.FC<Props> = (props) => {
             stringToUpliadFile(i))
           );
           setFileList(localFileList);
-        }
-      }
-    }, []);
-
-    useEffect(() => {
-      if (onChangeImage) {
-        if (typeof propsFileList === "string") {
-          if (fileList.length !== 0) {
-            onChangeImage(fileList[0].name);
-          }
         } else {
-          const urlList = fileList.map((item) => item.name);
-          onChangeImage(urlList);
+          setFileList([]);
         }
       }
-    }, [fileList]);
+    }, [propsFileList]);
+
     const uploadButton = (
       <div>
         <PlusOutlined />
@@ -75,7 +67,7 @@ const ImageManage: React.FC<Props> = (props) => {
       const ak = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l";
       //@ts-ignore
       const sk = "wZ5tDZqdvL8WcZCDLtMtfmpOcPkfG7Mxssd-3tQ9";
-      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:sRAHYVDUo152vGjxMrJ737SsKno=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MDQxNTkyNH0=";
+      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:oeOZLb5rDzxAJ2ZnS1ecUeLxouQ=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MDYyMTM1MX0=";
       const {file} = options;
       const fileName = `${new Date().getTime()}-${file.name}`;
       const putExtra = {
@@ -97,38 +89,53 @@ const ImageManage: React.FC<Props> = (props) => {
         },
         (res: any) => {
           console.log("上传完成", res);
-          const copyFileList = deepCopy(fileList);
-          copyFileList.push(stringToUpliadFile(fileName));
-          setFileList(copyFileList);
+          addFileList(fileName);
         });
     }
 
-    function removeImage(file: UploadFile) {
-      if (typeof propsFileList === "string") {
-        if (file.name === propsFileList) {
-          setFileList([]);
+    function addFileList(value: string) {
+      if (imgNumber === 1) {
+        onChangeImage(value);
+      } else {
+        if (Array.isArray(propsFileList)) {
+          const copyFileList = deepCopy(propsFileList);
+          copyFileList.push(value);
+          onChangeImage(copyFileList);
         }
+      }
+    }
+
+    function removeImage(file: UploadFile) {
+      if (typeof propsFileList === "string" || propsFileList === undefined) {
+        console.log("remode")
+        onChangeImage("");
       } else {
         const fileNameIndex = fileList.findIndex((i) => i.name === file.name);
-        const copyFileList = deepCopy(fileList);
+        const copyFileList = deepCopy(propsFileList);
         copyFileList.splice(fileNameIndex, 1);
-        setFileList(copyFileList);
+        onChangeImage(copyFileList);
       }
       return true;
     }
 
     return (
-      <div className={`${styles.main} ${commonStyles.commonEdit}`}>
-        <ReactIf vIf={label}>
-          <div className={commonStyles.label}>{label}</div>
-        </ReactIf>
-        <Upload
-          listType="picture-card"
-          fileList={fileList}
-          customRequest={uploadImage}
-          onRemove={removeImage}>
-          {fileList.length < imgNumber ? uploadButton : null}
-        </Upload>
+      <div className={`${commonStyles.commonEdit} ${styles.main}`}>
+        <Row align="middle">
+          <Col>
+            <ReactIf vIf={label}>
+              <div className={commonStyles.label}>{label}:</div>
+            </ReactIf>
+          </Col>
+          <Col offset={label && 1}>
+            <Upload
+              listType="picture-card"
+              fileList={fileList}
+              customRequest={uploadImage}
+              onRemove={removeImage}>
+              {fileList.length < imgNumber ? uploadButton : null}
+            </Upload>
+          </Col>
+        </Row>
       </div>
     );
   }

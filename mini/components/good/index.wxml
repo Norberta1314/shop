@@ -1,0 +1,22 @@
+<div class='main'>
+  <div
+    wx:for="{{goodInfoList}}"
+    key="{{item.id}}"
+    class='warp'>
+    <div class='block'>
+      <common-image
+        src='{{item.imgUrl}}'
+        width='173px'
+        widthView='{{173}}' style="border-radius: 5px"/>
+      <div class='textBlock'>
+        <div class='title'>{{item.title}}</div>
+        <div class='brand'>
+          {{item.brand}} | {{item.info}}
+        </div>
+        <div class='price'>
+          <span class='rmb'>¥</span>{{item.price}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

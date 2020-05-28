@@ -1,0 +1,14 @@
+{
+  "components": true,
+  "usingComponents": {
+    "headline": "/components/headline/index",
+    "shop-header": "/components/shopHeader/index",
+    "divider": "/components/divider/index",
+    "nav": "/components/nav/index",
+    "image-com": "/components/image/index",
+    "carousel": "/components/carousel/index",
+    "coupon": "/components/coupon/index",
+    "goods": "/components/good/index",
+    "show-case": "/components/showcase/index"
+  }
+}

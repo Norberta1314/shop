@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index", "pages/logs/logs", "pages/good/index", "pages/info/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/good/index",
+        "text": "商品"
+      }, {
+        "pagePath": "pages/info/index",
+        "text": "信息"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

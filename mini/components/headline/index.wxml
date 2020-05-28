@@ -1,0 +1,4 @@
+<div
+  style='font-size: {{headline.fontSize}}px;color: {{headline.fontColor}};background: {{headline.backgroundColor}};text-align: center'>
+  {{headline.title}}
+</div>

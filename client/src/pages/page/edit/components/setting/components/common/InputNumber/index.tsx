@@ -10,7 +10,7 @@ interface Props {
   max: number;
   value: number;
   unit?: string;
-  onChangeInput?: (value: number) => any;
+  onChangeInput: (value: number) => any;
 }
 
 interface Type extends React.FC<Props> {
@@ -28,8 +28,8 @@ const Index: Type = props => {
   return (
     <div className={commonStyle.commonEdit}>
       <Row align="middle">
-        <Col span={3}>
-          <div className={commonStyle.label}>{props.label}</div>
+        <Col>
+          <div className={commonStyle.label}>{props.label}:</div>
         </Col>
         <Col span={10} offset={1}>
           <Slider
@@ -38,7 +38,7 @@ const Index: Type = props => {
             value={props.value}
             onChange={handleChangeInput} />
         </Col>
-        <Col offset={1}>
+        <Col offset={1} span={4}>
           <InputNumber
             min={props.min}
             max={props.max}

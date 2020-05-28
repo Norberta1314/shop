@@ -5,7 +5,7 @@ import commonStyle from "../../../index.less";
 interface Prop {
   label: string;
   text: string | null | undefined;
-  onChangeInput?: (value: string) => any;
+  onChangeInput: (value: string) => any;
 }
 
 const Index = ({label, text, onChangeInput}: Prop) => {
@@ -19,7 +19,7 @@ const Index = ({label, text, onChangeInput}: Prop) => {
     <div className={commonStyle.commonEdit}>
       <Row align="middle">
         <Col>
-          <div className={commonStyle.label}>{label}</div>
+          <div className={commonStyle.label}>{label}:</div>
         </Col>
         <Col span={12} offset={1}>
           <Input

@@ -9,6 +9,7 @@ import { Headline } from "@/pages/page/type/component/Headline";
 import deepCopy from "@/utils/deepCopy";
 import { namespace } from "@/pages/page/edit/ModelType";
 import { Col, Row } from "antd";
+import commonStyle from '../../index.less'
 
 interface Props {
   headline: Headline;
@@ -35,6 +36,7 @@ const Index = ({headline, dispatch}: Props) => {
 
   return (
     <div>
+      <div className={commonStyle.settingTitle}>标题</div>
       <InputText
         label="标题"
         text={headline.title}

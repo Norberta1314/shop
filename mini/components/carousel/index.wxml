@@ -1,0 +1,11 @@
+<view class="inner">
+  <swiper indicator-dots="{{true}}" autoplay="{{carousel.auto}}">
+    <swiper-item
+      wx:for="{{carousel.imgList}}"
+      id="{{item}}">
+      <common-image
+        src="{{item}}"
+        width="375px" />
+    </swiper-item>
+  </swiper>
+</view>

@@ -19,7 +19,7 @@ const Index: React.FC<Props> = (props) => {
     <div className={commonStyles.commonEdit}>
       <Row align="middle">
         <Col>
-          <div className={commonStyles.label}>{label}</div>
+          <div className={commonStyles.label}>{label}:</div>
         </Col>
         <Col offset={1}>
           <Radio.Group

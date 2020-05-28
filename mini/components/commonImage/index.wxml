@@ -1,0 +1,10 @@
+<view class="inner">
+  <image
+    wx:if="{{src}}"
+    src="{{imgSrc}}"
+    mode="widthFix"
+    style="width:{{width}}" />
+  <image
+    wx:else
+    src="{{imgUrlBAse}}" />
+</view>

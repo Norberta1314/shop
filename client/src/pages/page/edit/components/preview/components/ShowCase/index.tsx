@@ -8,7 +8,9 @@ interface Props {
 }
 
 const Index: React.FC<Props> = props => (
-  <div className={styles.main}>
+  <div
+    className={styles.main}
+    style={{background: props.showCase.backgroundColor}}>
     {
       props.showCase.cells.map((cell, index) => (
         <div

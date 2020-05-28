@@ -15,6 +15,7 @@ const Index: React.FC<Props> = props => (
         props.carousel.imgList.map((item) => (
           <div key={item}>
             <img
+              style={{width: '100%'}}
               src={`${imgUrlBase}/${item}`}
               alt="" />
           </div>

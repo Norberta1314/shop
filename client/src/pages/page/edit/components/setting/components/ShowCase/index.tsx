@@ -6,10 +6,11 @@ import { ShowCaseCell as CellType } from "@/pages/page/type/component/ShowCase";
 import { connect } from "dva";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { Dispatch } from "redux";
-import deepCopy from "@/utils/deepCopy";
-import { namespace } from "@/pages/page/edit/ModelType";
+import { changeEditCompoennt } from "@/pages/page/edit/ModelType";
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
 import commonStyles from "../../index.less";
+import PickColor from "../common/PickColor";
+import commonStyle from "@/pages/page/edit/components/setting/index.less";
 
 interface Props {
   showCase: ShowCase;
@@ -20,29 +21,19 @@ const Index: React.FC<Props> = (props) => {
   const {showCase, dispatch} = props;
   useEffect((() => {
     if (showCase.mode === ShowCaseMode.mode1) {
-      handleChange("cells", [
-        newCell,
-        newCell
-      ]);
+      if (showCase.cells.length !== 2) {
+        handleChange("cells", [newCell, newCell]);
+      }
     } else if (showCase.mode == ShowCaseMode.mode2) {
-      handleChange("cells", [newCell, newCell, newCell]);
+      if (showCase.cells.length === 2) {
+        handleChange("cells", [...showCase.cells, newCell]);
+      }
+
     }
   }), [showCase.mode]);
 
   function handleChange(attribute: string, e: any) {
-    const localShowcase = deepCopy(showCase);
-    if (localShowcase) {
-      localShowcase[attribute] = e;
-    }
-    if (dispatch) {
-      dispatch({
-        type: `${namespace}/editComponent`,
-        payload: {
-          type: PageComponentsType.ShowCase,
-          showCase: localShowcase
-        }
-      });
-    }
+    changeEditCompoennt(dispatch, showCase, attribute, e, PageComponentsType.ShowCase);
   }
 
   function handleChangeMode(e: RadioChangeEvent) {
@@ -58,10 +49,15 @@ const Index: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <div className={commonStyle.settingTitle}>橱窗</div>
       <ChooseTable
         mode={showCase.mode}
         onChangeMode={handleChangeMode} />
-      <div className={commonStyles.info}>页面的宽度是375px哦,宽度和超过375px会换行</div>
+      <PickColor
+        label="背景颜色"
+        value={showCase.backgroundColor}
+        onChangeInput={(e) => handleChange("backgroundColor", e)} />
+      <div className={commonStyles.info}>(页面的宽度是375px哦,宽度和超过375px会换行)</div>
       {
         showCase.cells.map((cell, index) => (
           <Cell

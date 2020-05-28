@@ -7,6 +7,7 @@ import { namespace } from "@/pages/page/edit/ModelType";
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
 import { Carousel } from "@/pages/page/type/component/Carousel";
 import Switch from "../common/Switch";
+import commonStyle from "@/pages/page/edit/components/setting/index.less";
 
 interface Props {
   carousel: Carousel;
@@ -38,6 +39,7 @@ const Index = ({carousel, dispatch}: Props) => {
 
   return (
     <div>
+      <div className={commonStyle.settingTitle}>走马灯</div>
       <ImageManage
         imgNumber={5}
         fileList={carousel.imgList}

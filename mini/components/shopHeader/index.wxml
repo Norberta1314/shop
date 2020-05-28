@@ -1,0 +1,15 @@
+<div class="main">
+  <div class="backgroundImg">
+    <common-image
+      src="{{shopHeader.backgroundImgUrl}}" />
+  </div>
+  <div class="otherGroup">
+    <div class="logo">
+      <common-image
+        src="{{shopHeader.avatorImgUrl}}"
+        width="64px"
+        style="border-radius: inherit" />
+    </div>
+    <div class="title">{{shopHeader.name}}</div>
+  </div>
+</div>

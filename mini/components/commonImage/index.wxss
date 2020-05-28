@@ -1,0 +1,8 @@
+.inner {
+  font-size: 0;
+  border-radius: inherit;
+}
+
+image {
+  border-radius: inherit;
+}

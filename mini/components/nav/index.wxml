@@ -1,0 +1,11 @@
+<div class='main'>
+  <view
+    wx:if='{{nav.styleMode === NavStyleMode.char}}'
+    wx:for="{{nav.cells}}">
+    <div
+      key='{{item.text}}'
+      class='cell cellText'
+      style="borderColor:{{item.color}};color:{{item.color}}">{{item.text}}
+    </div>
+  </view>
+</div>

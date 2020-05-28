@@ -7,6 +7,7 @@ export interface Nav {
 export interface NavCell {
   text: string;
   imgUrl: string;
+  color: string;
 }
 
 export enum NavStyleMode {
@@ -16,6 +17,7 @@ export enum NavStyleMode {
 export const newNavCell: NavCell = {
   text: "",
   imgUrl: "",
+  color: "",
 };
 
 export const newNav: Nav = {

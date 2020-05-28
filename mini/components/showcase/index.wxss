@@ -1,0 +1,15 @@
+.main {
+  min-height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  display: inline-block;
+}
+
+img {
+  width: 100%;
+}

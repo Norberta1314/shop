@@ -4,6 +4,7 @@ import ImageManage from "../common/ImageManage";
 import { ShowCaseCell } from "@/pages/page/type/component/ShowCase";
 import deepCopy from "@/utils/deepCopy";
 import InputNumber from "../common/InputNumber";
+import { Divider } from "antd";
 
 interface Props {
   label: string;
@@ -16,9 +17,9 @@ const Index: React.FC<Props> = (props) => {
 
   function handleChangeImage(value: (string | undefined)[] | string | undefined) {
     if (typeof value === "string") {
-      handleChange("url", value);
+      handleChange("imgUrl", value);
     } else if (value === undefined) {
-      handleChange("url", undefined);
+      handleChange("imgUrl", undefined);
     }
   }
 
@@ -41,16 +42,15 @@ const Index: React.FC<Props> = (props) => {
         min={0}
         max={30}
         unit="px"
-        onChangeInput={(value) => handleChange("marginLeft", value)}
-      />
+        onChangeInput={(value) => handleChange("marginLeft", value)} />
       <InputNumber
         label="宽度"
         value={cell.width}
         min={0}
-        max={750}
+        max={375}
         unit="px"
-        onChangeInput={(value) => handleChange("width", value)}
-      />
+        onChangeInput={(value) => handleChange("width", value)} />
+      <Divider />
     </div>
   );
 };

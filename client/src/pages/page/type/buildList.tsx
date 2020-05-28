@@ -29,7 +29,11 @@ export const buildList = {
       type: PageComponentsType.Nav,
       title: "导航",
       icon: (<IconFont type="icon-nav" />),
-    },
+    }, {
+      type: PageComponentsType.Divider,
+      title: "分隔",
+      icon: (<IconFont type="icon-divider"/>)
+    }
     // {
     //   type: PageComponentsType.Affix,
     //   title: "固钉",

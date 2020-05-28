@@ -7,7 +7,7 @@ import PreviewMain from "./Main";
 import Delete from "./Delete";
 
 interface Prop {
-  page?: Page;
+  page: Page;
   currentEditComponent?: number;
   dragStart?: number | null;
 }
@@ -15,9 +15,10 @@ interface Prop {
 const Index = ({page, currentEditComponent, dragStart = null}: Prop) => (
   <div className={styles.main}>
     <PreviewMain
+      backgroundColor={page.backgroundColor || "#ffffff"}
       list={page?.components || []}
       currentEditComponent={currentEditComponent} />
-    <Delete dragStart={dragStart}/>
+    <Delete dragStart={dragStart} />
   </div>
 );
 

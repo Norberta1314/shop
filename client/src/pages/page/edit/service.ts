@@ -24,6 +24,7 @@ export async function updatePage(data: Page): Promise<any> {
       title: data.title,
       shopId: data.shopId,
       previewImg: data.previewImg,
+      backgroundColor: data.backgroundColor,
       styleType: data.styleType,
       mode: data.mode,
       isDelete: data.isDelete,

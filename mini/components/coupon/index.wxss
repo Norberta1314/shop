@@ -1,0 +1,88 @@
+.main {
+  padding: 0 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.main:before, .main:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  right: 85px;
+  border-radius: 5px;
+}
+
+.main:before {
+  top: -5px;
+}
+
+.main:after {
+  bottom: -5px;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.leftBlock {
+  display: flex;
+  flex: 1;
+  line-height: 70px;
+  position: relative;
+  font-family: "Adobe Devanagari";
+  padding-left: 20px;
+}
+
+.price {
+  font-size: 60px;
+  letter-spacing: -1px;
+  font-weight: 600;
+}
+
+.rmb {
+  font-size: 10px;
+  font-family: cursive;
+  padding-right: 3px;
+}
+
+.infoBlock {
+  line-height: normal;
+  padding: 10px 13px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.info {
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.rightBlock {
+  position: relative;
+  width: 80px;
+  padding: 10px 0;
+  border-left: 1px dashed;
+  text-align: center;
+}
+
+.now {
+  padding: 0 17px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.has {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 3px;
+  border-radius: 5px;
+}

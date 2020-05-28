@@ -1,0 +1,29 @@
+<div
+  class='main'
+  style="background: {{backgroundColor}}">
+  <div
+    class='block'
+    style="background: {{coupon.couponBackgroundColor}}; color: {{coupon.fontSizeColor}}">
+    <div class='leftBlock'>
+      <div class='priceBlock'>
+        <span class='rmb'>¥</span>
+        <span class='price'>{{coupon.price}}</span>
+      </div>
+      <div
+        class='infoBlock'>
+        <div class='title'>{{coupon.title}}</div>
+        <div class='info'>{{coupon.info}}</div>
+      </div>
+    </div>
+    <div
+      class='rightBlock'
+      style="borderColor: {{backgroundColor}}">
+      <div class='now'>立即领取</div>
+      <div
+        class='has'
+        style="background: {{coupon.buttonColor}}"> 已领66%
+      </div>
+    </div>
+  </div>
+</div>
+

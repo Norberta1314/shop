@@ -12,18 +12,22 @@ const Index: React.FC<Props> = props => (
   <div className={styles.main}>
     <ReactIf vIf={props.nav.styleMode === NavStyleMode.char}>
       {
-        props.nav.cells.map((item) => (
+        props.nav.cells.map((item, index) => (
           <div
-            key={item.text}
-            className={styles.cell}>nav</div>
+            key={`${index}-${item.text}`}
+            className={`${styles.cell} ${styles.cellText}`}
+            style={{
+              borderColor: item.color,
+              color: item.color
+            }}>{item.text}</div>
         ))
       }
     </ReactIf>
     <ReactIf vIf={props.nav.styleMode === NavStyleMode.image}>
       {
-        props.nav.cells.map((item) => (
+        props.nav.cells.map((item, index) => (
           <div
-            key={item.imgUrl}
+            key={`${index}-${item.imgUrl}`}
             className={styles.cell}>
             <CommonImage src={item.imgUrl} />
           </div>

@@ -1,0 +1,3 @@
+<view
+  class="inner"
+  style="height:{{divider.height + 'px'}}; background:{{divider.backgroundColor}}" />

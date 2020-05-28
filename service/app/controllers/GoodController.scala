@@ -25,10 +25,15 @@ class GoodController @Inject()(goodService: GoodService, cc: ControllerComponent
 
   def updateById = Action(parse.json) { request =>
     val good = Json.parse(request.body.toString()).as[Good]
-
     goodService.updateById(good.id, good) match {
       case id: Long => jsonSuccess(id)
     }
   }
 
+  def findListByIds = Action(parse.json) { request =>
+    val ids = Json.parse(request.body.toString()).as[List[Int]]
+    goodService.findByIds(ids) match {
+      case goods: List[Good] => jsonSuccess(goods)
+    }
+  }
 }

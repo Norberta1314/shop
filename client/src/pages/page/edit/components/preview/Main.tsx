@@ -14,6 +14,7 @@ import Goods from "./components/Goods";
 import MemberCard from "./components/MemberCard";
 import Coupon from "./components/Coupon";
 import ShopHeader from "./components/ShopHeader";
+import Divider from "./components/Divider";
 import styles from "./index.less";
 import { namespace } from "@/pages/page/edit/ModelType";
 import { newHeadline } from "@/pages/page/type/component/Headline";
@@ -26,10 +27,12 @@ import { newAffix } from "@/pages/page/type/component/Affix";
 import { newGoods } from "@/pages/page/type/component/Goods";
 import { newMemberCard } from "@/pages/page/type/component/MemberCard";
 import { newCoupon } from "@/pages/page/type/component/Coupon";
-import { newShopHEader } from "@/pages/page/type/component/ShopHeader";
+import { newShopHeader } from "@/pages/page/type/component/ShopHeader";
+import { newDivider } from "@/pages/page/type/component/Divider";
 
 interface Prop {
   list: (PageComponents | null)[];
+  backgroundColor: string;
   currentEditComponent?: number;
   dispatch?: Dispatch<any>;
 }
@@ -49,9 +52,9 @@ class Index extends React.Component<Prop, State> {
     };
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Prop>): boolean {
-    return nextProps !== this.props;
-  }
+  // shouldComponentUpdate(nextProps: Readonly<Prop>): boolean {
+  //   return nextProps !== this.props;
+  // }
 
   handleClickComponents(index: number) {
     const {dispatch} = this.props;
@@ -138,11 +141,13 @@ class Index extends React.Component<Prop, State> {
   render() {
     const {list, currentEditComponent} = this.props;
     return (
-      <ul className={styles.container}>
+      <ul
+        className={styles.container}
+        style={{background: this.props.backgroundColor}}>
         {
           list && list.map((item, index) => (
             <li
-              key={`item?.type${Math.random()}`}
+              key={`${item?.type}-${index}`}
               ref={`component${index}`}
               onClick={() => this.handleClickComponents(index)}
               className={`${currentEditComponent === index ? styles.choosedLi : null}`}
@@ -180,10 +185,15 @@ class Index extends React.Component<Prop, State> {
                 <MemberCard memberCard={item?.memberCard || newMemberCard} />
               </ReactIf>
               <ReactIf vIf={item?.coupon}>
-                <Coupon coupon={item?.coupon || newCoupon} />
+                <Coupon
+                  coupon={item?.coupon || newCoupon}
+                  backgroundColor={this.props.backgroundColor} />
               </ReactIf>
               <ReactIf vIf={item?.shopHeader}>
-                <ShopHeader shopHEader={item?.shopHeader || newShopHEader} />
+                <ShopHeader shopHeader={item?.shopHeader || newShopHeader} />
+              </ReactIf>
+              <ReactIf vIf={item?.divider}>
+                <Divider divider={item?.divider || newDivider} />
               </ReactIf>
             </li>
           ))

@@ -7,6 +7,7 @@ import { namespace } from "@/pages/page/edit/ModelType";
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
 import { Dispatch } from "redux";
 import { connect } from "dva";
+import commonStyle from "@/pages/page/edit/components/setting/index.less";
 
 interface Props {
   notification: Notification;
@@ -34,6 +35,7 @@ const Index: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <div className={commonStyle.settingTitle}>通知</div>
       <InputText
         label="公告内容"
         text={notification.text}

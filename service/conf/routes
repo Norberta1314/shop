@@ -4,22 +4,23 @@
 # ~~~~
 
 # An example controller showing a sample home model.page
-GET         /                           controllers.HomeController.index
+GET         /                              controllers.HomeController.index
 # An example controller showing how to use dependency injection
-GET         /api/count                  controllers.CountController.count
+GET         /api/count                     controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET         /message                    controllers.AsyncController.message
+GET         /message                       controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                  controllers.Assets.versioned(path="/public", file: Asset)
 
-GET         /api/findId                 controllers.UserController.findById(id: Int)
+GET         /api/findId                    controllers.UserController.findById(id: Int)
 
-GET         /api/page/list              controllers.PageController.findByShopId(id:Int)
-GET         /api/page/findById          controllers.PageController.findById(id:Int)
-POST        /api/page/updateById        controllers.PageController.updateById
+GET         /api/page/list                 controllers.PageController.findByShopId(id:Int)
+GET         /api/page/findById             controllers.PageController.findById(id:Int)
+POST        /api/page/updateById           controllers.PageController.updateById
 
 
-POST        /api/good/insert            controllers.GoodController.insert
-GET         /api/good/list              controllers.GoodController.findById(id:Int)
-POST        /api/good/update            controllers.GoodController.updateById
+POST        /api/good/insert               controllers.GoodController.insert
+GET         /api/good/list                 controllers.GoodController.findById(id:Int)
+POST        /api/good/update               controllers.GoodController.updateById
+POST        /api/good/findListByIds        controllers.GoodController.findListByIds

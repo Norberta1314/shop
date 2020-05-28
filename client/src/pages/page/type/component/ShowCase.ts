@@ -1,5 +1,7 @@
 export interface ShowCase {
   mode: number;
+  height: number;
+  backgroundColor: string;
   cells: ShowCaseCell[];
 }
 
@@ -20,6 +22,8 @@ export const newCell: ShowCaseCell = {
 };
 export const newShowCase: ShowCase = {
   mode: ShowCaseMode.mode1,
+  height: 200,
+  backgroundColor: "",
   cells: [newCell, newCell],
 };
 

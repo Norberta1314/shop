@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "goods" : "/components/good/index"
+  }
+}

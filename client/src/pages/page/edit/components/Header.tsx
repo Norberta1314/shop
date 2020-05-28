@@ -7,9 +7,10 @@ import { namespace, PageEdit } from "@/pages/page/edit/ModelType";
 import { Page } from "@/pages/page/type/page";
 import { Dispatch } from "redux";
 import { Loading } from "@/models/connect";
+import PickColor from "./setting/components/common/PickColor";
 
 interface Props {
-  page?: Page;
+  page: Page;
   dispatch?: Dispatch<any>;
   updateLoading?: boolean;
 }
@@ -36,13 +37,34 @@ const Header: React.FC<Props> = (props) => {
     }
   }
 
+  function handleChangePage(attribute: string, e: any) {
+    if (dispatch) {
+      dispatch({
+        type: `${namespace}/save`,
+        payload: {
+          page: {
+            ...page,
+            [attribute]: e
+          }
+        }
+      });
+    }
+  }
+
   return (
     <header className={styles.header}>
       <Row align="middle">
         <Col offset={1}>
           <div className={styles.leftBlock}>
-            <FontSizeOutlined />
-            <span className={styles.title}>{page?.title}</span>
+            <div className={styles.titleBlock}>
+              <FontSizeOutlined />
+              <span className={styles.title}>{page?.title}</span>
+            </div>
+
+            <PickColor
+              label="背景颜色"
+              value={page?.backgroundColor}
+              onChangeInput={(e) => handleChangePage("backgroundColor", e)} />
           </div>
         </Col>
         <Col flex="auto">

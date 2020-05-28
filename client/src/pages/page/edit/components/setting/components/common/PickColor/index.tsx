@@ -8,7 +8,7 @@ import { ColorProps } from "@/type/react-color";
 interface Props {
   label: string;
   value: string;
-  onChangeInput?: (value: string) => any;
+  onChangeInput: (value: string) => any;
 }
 
 interface Type extends React.FC<Props> {
@@ -17,8 +17,10 @@ interface Type extends React.FC<Props> {
 
 const Index: Type = props => {
   function handleChangeColor(value: ColorProps) {
+    console.log(value);
+    const {rgb} = value;
     if (props.onChangeInput) {
-      props.onChangeInput(value.hex);
+      props.onChangeInput(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`);
     }
   }
 
@@ -31,12 +33,18 @@ const Index: Type = props => {
     <div className={commonStyle.commonEdit}>
       <Row align="middle">
         <Col>
-          <div className={commonStyle.label}>{props.label}</div>
+          <div className={commonStyle.label}>{props.label}:</div>
         </Col>
-        <Col span={6} offset={1}>
-          <Popover content={picker} trigger="click">
+        <Col
+          span={6}
+          offset={1}>
+          <Popover
+            content={picker}
+            trigger="click">
             <Button>
-              <div style={{background: props.value}} className={styles.colorDot} />
+              <div
+                style={{background: props.value}}
+                className={styles.colorDot} />
             </Button>
           </Popover>
         </Col>

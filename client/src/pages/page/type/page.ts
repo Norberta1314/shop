@@ -6,6 +6,7 @@ export interface PageBase {
   title: string;
   previewImg: string;
   styleType: number; //页面样式
+  backgroundColor: string;
   mode: number; //页面归属
   isDelete: boolean;
 }

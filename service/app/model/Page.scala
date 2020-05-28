@@ -12,6 +12,7 @@ case class Page(
                  mode: Int,
                  styleType: Int,
                  previewImg: Option[String],
+                 backgroundColor: Option[String],
                  components: Option[String],
                  isDelete: Option[Boolean],
                  createTime: Option[Date],

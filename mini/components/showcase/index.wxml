@@ -1,0 +1,11 @@
+<div
+  class='main'
+  style='background: {{showCase.backgroundColor}}'>
+  <div
+    wx:for="{{showCase.cells}}"
+    key='{{index}}'
+    style='margin-left:{{item.marginLeft}}px;width: {{item.width}}px'
+    class='cell'>
+    <common-image src='{{item.imgUrl}}' width="{{item.width + 'px'}}"/>
+  </div>
+</div>

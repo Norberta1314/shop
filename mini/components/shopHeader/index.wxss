@@ -1,0 +1,25 @@
+.main {
+  display: block;
+  position: relative;
+  height: 175px;
+}
+
+.otherGroup {
+  display: flex;
+  width: 375px;
+  flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  margin: 0 10px;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.logo {
+  border-radius: 32px;
+}

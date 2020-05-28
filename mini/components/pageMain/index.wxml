@@ -1,0 +1,34 @@
+<view
+  class="inner"
+  style="background:{{page.backgroundColor}}">
+  <view wx:for="{{page.components}}">
+    <headline
+      wx:if="{{item.headline}}"
+      headline="{{item.headline}}" />
+    <shop-header
+      wx:if="{{item.shopHeader}}"
+      shopHeader="{{item.shopHeader}}" />
+    <divider
+      wx:if="{{item.divider}}"
+      divider="{{item.divider}}" />
+    <nav
+      wx:if="{{item.nav}}"
+      nav="{{item.nav}}" />
+    <image-com
+      wx:if="{{item.image}}"
+      image="{{item.image}}" />
+    <carousel
+      wx:if="{{item.carousel}}"
+      carousel="{{item.carousel}}" />
+    <coupon
+      wx:if="{{item.coupon}}"
+      coupon="{{item.coupon}}"
+      backgroundColor="{{page.backgroundColor}}" />
+    <goods
+      wx:if="{{item.goods}}"
+      goods="{{item.goods}}" />
+    <show-case
+      wx:if="{{item.showCase}}"
+      showCase="{{item.showCase}}" />
+  </view>
+</view>

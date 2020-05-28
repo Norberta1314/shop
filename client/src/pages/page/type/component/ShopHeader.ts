@@ -1,5 +1,11 @@
 export interface ShopHeader {
+  backgroundImgUrl: string;
+  avatorImgUrl: string;
+  name: string;
 }
 
-export const newShopHEader: ShopHeader = {
+export const newShopHeader: ShopHeader = {
+  backgroundImgUrl: "",
+  avatorImgUrl: "",
+  name: "",
 };

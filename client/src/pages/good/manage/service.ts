@@ -1,6 +1,5 @@
 import request from "@/utils/request";
 import { Good } from "@/pages/good/type/good";
-import { Result } from "@/type/Result";
 
 export async function insertGood(good: Good): Promise<any> {
   return request("/api/good/insert", {
@@ -8,11 +7,12 @@ export async function insertGood(good: Good): Promise<any> {
     data: {
       ...good,
       id: 0,
+      shopId: 1
     }
   });
 };
 
-export async function fetchGoodList(): Promise<Result<any>> {
+export async function fetchGoodList(): Promise<Good[]> {
   const data = await request("/api/good/list?id=1");
   return new Promise((resolve, reject) => {
     resolve(data.data.map((item: Good) => {
@@ -21,6 +21,17 @@ export async function fetchGoodList(): Promise<Result<any>> {
         createTime: new Date(item.createTime).toLocaleString()
       };
     }));
+  });
+}
+
+export async function getGoodListByIds(ids: number[]): Promise<Good[]> {
+  const data = await request("/api/good/findListByIds", {
+    method: "POST",
+    data: ids
+  });
+
+  return new Promise((resolve, reject) => {
+    resolve(data.data);
   });
 }
 

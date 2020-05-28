@@ -15,12 +15,19 @@
     box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
     .leftBlock {
-      font-size: 20px;
-      color: @light-color;
+      display: flex;
+      flex-direction: row;
 
-      .title {
-        margin-left: 10px;
+      .titleBlock {
+
+        font-size: 20px;
+        color: @light-color;
+
+        .title {
+          margin-left: 10px;
+        }
       }
+
     }
 
     .buttonGroup {

@@ -24,6 +24,7 @@ class PageRepository @Inject()(val dBConfig: DBConfig) extends Repository {
       .update(
         _.title -> lift(data.title),
         _.styleType -> lift(data.styleType),
-        _.components -> lift(data.components))
+        _.components -> lift(data.components),
+        _.backgroundColor -> lift(data.backgroundColor))
   })
 }

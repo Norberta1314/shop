@@ -1,0 +1,7 @@
+<div class="main">
+  <div class="warp">
+    <common-image
+      src="{{image.imgUrl}}"
+      width="{{image.width+'px'}}" />
+  </div>
+</div>

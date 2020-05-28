@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../index.less";
 import { Button, Col, Input, InputNumber, Modal, Row, Form } from "antd";
 import ImageManage from "@/pages/page/edit/components/setting/components/common/ImageManage";
@@ -26,6 +26,7 @@ const tailLayout = {
 const Index: React.FC<Props> = (props) => {
   const [form] = Form.useForm();
   const {dispatch, showAddGoodModel, editGood} = props;
+  const [image, setImage] = useState<string>("");
 
   useEffect(() => {
     if (showAddGoodModel) {
@@ -79,8 +80,11 @@ const Index: React.FC<Props> = (props) => {
   }
 
   function handleChangeImage(value: any) {
-    if (typeof value === "string") {
+    console.log("change image", value, typeof value, value === undefined);
+    if (typeof value === "string" || value === undefined) {
+      console.log('dingding')
       form.setFieldsValue({imgUrl: value});
+      setImage(value);
     }
   }
 
@@ -120,7 +124,7 @@ const Index: React.FC<Props> = (props) => {
             label="图片">
             <ImageManage
               imgNumber={1}
-              fileList={editGood?.imgUrl || ""}
+              fileList={image || editGood?.imgUrl || ""}
               onChangeImage={handleChangeImage} />
           </Form.Item>
           <Form.Item

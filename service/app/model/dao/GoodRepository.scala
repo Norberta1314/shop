@@ -18,7 +18,8 @@ class GoodRepository @Inject()(val dBConfig: DBConfig) extends Repository {
         _.stock -> lift(data.stock),
         _.imgUrl -> lift(data.imgUrl),
         _.info -> lift(data.info),
-        _.brand -> lift(data.brand))
+        _.brand -> lift(data.brand),
+        _.shopId -> lift(data.shopId))
       .returningGenerated(_.id)
   })
 
@@ -36,5 +37,9 @@ class GoodRepository @Inject()(val dBConfig: DBConfig) extends Repository {
         _.info -> lift(data.info),
         _.imgUrl -> lift(data.imgUrl)
       )
+  })
+
+  def findListByIds(ids: List[Int]) = run(quote {
+    good.filter(p => liftQuery(ids).contains(p.id))
   })
 }

@@ -26,7 +26,7 @@ class PageController @Inject()(pageService: PageService, cc: ControllerComponent
   def updateById = Action(parse.json) { request =>
     println(request.body.toString())
     val page = Json.parse(request.body.toString()).as[Page]
-
+    println(page)
     pageService.updateById(page.id, page) match {
       case id: Long => jsonSuccess(id)
     }

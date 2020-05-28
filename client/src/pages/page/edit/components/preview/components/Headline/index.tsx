@@ -9,7 +9,8 @@ const Index = ({headline}: Props) => {
   const styles = {
     fontSize: `${headline.fontSize}px`,
     color: headline.fontColor,
-    background: headline.backgroundColor
+    background: headline.backgroundColor,
+    textAlign: 'center'
   };
 
   return (

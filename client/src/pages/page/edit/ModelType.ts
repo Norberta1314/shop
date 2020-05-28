@@ -20,6 +20,7 @@ export const pageEdit: PageEdit = {
     styleType: StyleType.self,
     mode: PageMode.self,
     components: [],
+    backgroundColor: "#ffffff"
   },
   currentEditComponent: undefined,
   dragEnd: null,

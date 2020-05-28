@@ -7,6 +7,8 @@ import IndexRadio from "../common/InputRadio";
 import { connect } from "dva";
 import Cell from "./Cell";
 import deepCopy from "@/utils/deepCopy";
+import commonStyle from "@/pages/page/edit/components/setting/index.less";
+import { Divider } from "antd";
 
 interface Props {
   nav: Nav,
@@ -20,15 +22,24 @@ const Index: React.FC<Props> = (props) => {
     let cells = [newNavCell, newNavCell, newNavCell];
     switch (nav.navNumber) {
       case 3:
+        if (nav.cells.length !== 3) {
+          handleChange("cells", cells);
+        }
         break;
       case 4:
-        cells.push(newNavCell);
+        console.log(nav.cells.length)
+        if (nav.cells.length !== 4) {
+          cells.push(newNavCell);
+          handleChange("cells", cells);
+        }
         break;
       case 5:
-        cells.push(newNavCell, newNavCell);
+        if (nav.cells.length !== 5) {
+          cells.push(newNavCell, newNavCell);
+          handleChange("cells", cells);
+        }
         break;
     }
-    handleChange("cells", cells);
   }, [nav.navNumber]);
 
   function handleChange(attribute: string, e: any) {
@@ -47,6 +58,7 @@ const Index: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <div className={commonStyle.settingTitle}>导航</div>
       <IndexRadio
         label="导航数量"
         options={navNumberOptions}
@@ -57,6 +69,8 @@ const Index: React.FC<Props> = (props) => {
         options={navStyleOptions}
         value={nav.styleMode}
         onChangeRadio={(e) => handleChange("styleMode", e.target.value)} />
+      <div className={commonStyle.info}> *文字导航的内容以4字最佳</div>
+      <Divider />
       {
         nav.cells.map((cell, index) => (
           <Cell
