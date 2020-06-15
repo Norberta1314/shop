@@ -8,12 +8,17 @@ import { connect } from "dva";
 import { Result } from "@/type/Result";
 import { success } from "@/utils/request";
 import { Page, PageMode } from "@/pages/page/type/page";
+import { Dispatch } from "redux";
 
-const PageManage = () => {
+const PageManage = ({dispatch}: { dispatch: Dispatch<any> }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [baseList, setBaseList] = useState<Page[]>([]);
   const [selfList, setSelfList] = useState<Page[]>([]);
   useEffect(() => {
+    refresh();
+  }, []);
+
+  function refresh() {
     fetchPageList(1).then((r: Result<Page[]>) => {
       if (r.code === success) {
         const baseList: Page[] = [];
@@ -30,9 +35,7 @@ const PageManage = () => {
       }
       setLoading(false);
     });
-
-
-  }, []);
+  }
 
   return (
     <div className={styles.main}>
@@ -40,11 +43,14 @@ const PageManage = () => {
         <Group
           title="基础页面"
           list={baseList}
-          hasAdd={false} />
+          hasAdd={false}
+          refresh={refresh} />
         <Group
+          dispatch={dispatch}
           title="自定义页面"
           list={selfList}
-          hasAdd />
+          hasAdd
+          refresh={refresh} />
       </ReactIf>
       <ReactIf vIf={loading}>
         <Spin />

@@ -23,16 +23,20 @@ Component({
   },
   methods: {
     // 这里是一个自定义方法
-    customMethod: function () {
+    toDetail: function (event) {
+      const { currentTarget } = event;
+      if (currentTarget.dataset.id) {
+        wx.navigateTo({
+          url: `/pages/detail/index?id=${currentTarget.dataset.id}`
+        });
+      }
     }
   },
   attached: function () {
-    console.log('this is created', this);
     if (this.data.isAll) {
       wx.request({
         url: fetchGoodList,
         success: (res) => {
-          console.log(res);
           const info = res.data.data;
           this.setData({
             goodInfoList: info
@@ -45,7 +49,6 @@ Component({
         method: 'POST',
         data: this.data.goods.goodList,
         success: (res) => {
-          console.log(res);
           const info = res.data.data;
           this.setData({
             goodInfoList: info

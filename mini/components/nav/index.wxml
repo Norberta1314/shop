@@ -3,8 +3,10 @@
     wx:if='{{nav.styleMode === NavStyleMode.char}}'
     wx:for="{{nav.cells}}">
     <div
+      data-link-id="{{item.linkId}}"
       key='{{item.text}}'
       class='cell cellText'
+      bindtap="toDetail"
       style="borderColor:{{item.color}};color:{{item.color}}">{{item.text}}
     </div>
   </view>

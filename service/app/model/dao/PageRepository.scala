@@ -27,4 +27,17 @@ class PageRepository @Inject()(val dBConfig: DBConfig) extends Repository {
         _.components -> lift(data.components),
         _.backgroundColor -> lift(data.backgroundColor))
   })
+
+  def insert(data: Page) = run(quote {
+    page.insert(_.title -> lift(data.title),
+      _.mode -> lift(data.mode),
+      _.shopId -> lift(data.shopId),
+      _.styleType -> lift(data.styleType))
+      .returningGenerated(_.id)
+  })
+
+  def delete(id: Int) = run(quote {
+    page.filter(_.id == lift(id)).delete
+  })
+
 }

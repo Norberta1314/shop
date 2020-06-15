@@ -1,0 +1,9 @@
+.ok-png {
+  width: 100px;
+  margin: 100px auto;
+}
+
+.success-info {
+  display: inline-block;
+  text-align: center;
+}

@@ -15,7 +15,14 @@ Component({
   },
   methods: {
     // 这里是一个自定义方法
-    customMethod: function () {
+    toDetail: function (event) {
+      const {currentTarget} = event
+      console.log(currentTarget.dataset)
+      if (currentTarget.dataset.linkId) {
+        wx.navigateTo({
+          url: `/pages/page/index?id=${currentTarget.dataset.linkId}`
+        });
+      }
     }
   }
 });

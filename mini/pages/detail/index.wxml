@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+  <image
+    class="head-image"
+    src="{{imgUrl}}"
+    mode="widthFix" />
+  <view class="price">
+    <span class="rmb">¥</span>{{good.price}}
+  </view>
+  <view class="title">{{good.title}} | {{good.brand}}</view>
+  <view class="info">{{good.info}}</view>
+  <view class="divider"></view>
+  <view class="number-group">
+    <view class="label">库存</view>
+    <view class="number">{{good.stock}}</view>
+  </view>
+  <view class="number-group">
+    <view class="label">浏览量</view>
+    <view class="number">{{good.pageView}}</view>
+  </view>
+  <view class="number-group">
+    <view class="label">销量</view>
+    <view class="number">{{good.buyAmount}}</view>
+  </view>
+  <view class="bottom">
+    <button
+      class="bottom-button"
+      bindtap="toSuccess"
+      type="warn">立即购买
+    </button>
+  </view>
+</view>

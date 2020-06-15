@@ -7,7 +7,8 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="button-group" bindtap="toAbout">
+    <button type="primary" plain="true">关于我们</button>
   </view>
+
 </view>

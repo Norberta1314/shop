@@ -6,13 +6,15 @@ import { connect } from "dva";
 import { Page } from "@/pages/page/type/page";
 import styles from "../index.less";
 import ReactIf from "@/components/ReactIf";
+import CommonImage from "@/pages/page/edit/components/preview/components/commonImage";
 
 interface CardProp {
   page: Page;
   dispatch: Dispatch<any>;
+  refresh: () => any;
 }
 
-const PageCard = ({page, dispatch}: CardProp) => {
+const PageCard = ({page, dispatch, refresh}: CardProp) => {
   const handleClickEdit = () => {
     if (dispatch) {
       dispatch({
@@ -23,7 +25,18 @@ const PageCard = ({page, dispatch}: CardProp) => {
   };
 
   const handleClickDelete = () => {
-    console.log("click delete");
+    if (dispatch) {
+      dispatch({
+        type: "pageManage/delete",
+        payload: {
+          id: page.id
+        }
+      });
+      setTimeout(() => {
+        refresh();
+      }, 1000);
+
+    }
   };
 
   const handleClickEllipsis = () => {
@@ -33,9 +46,7 @@ const PageCard = ({page, dispatch}: CardProp) => {
   const preview = (img: string) => (
     <ReactIf vIf={true}>
       <ReactIf vIf={img}>
-        <img
-          alt="example"
-          src={page.previewImg} />
+        <CommonImage src={img} />
       </ReactIf>
       <ReactIf vIf={!img}>
         <span className={styles.cover_img}>

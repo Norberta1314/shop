@@ -42,13 +42,50 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/page",
+					"pathName": "pages/page/index",
+					"query": "id=4",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/info",
+					"pathName": "pages/info/index",
+					"query": "id=4",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/detail",
+					"pathName": "pages/detail/index",
+					"query": "id=5",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/success/index",
+					"pathName": "pages/success/index",
+					"query": "id=5",
+					"scene": null
+				}
+			]
 		}
 	}
 }

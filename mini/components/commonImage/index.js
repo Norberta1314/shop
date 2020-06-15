@@ -22,7 +22,6 @@ Component({
     imgSrc: '',
   },
   attached: function () {
-    console.log('this is created', this);
     const { imgUrlBase, src, width, widthView } = this.data;
     if (this.data.widthView) {
       this.setData({

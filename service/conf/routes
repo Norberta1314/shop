@@ -18,9 +18,12 @@ GET         /api/findId                    controllers.UserController.findById(i
 GET         /api/page/list                 controllers.PageController.findByShopId(id:Int)
 GET         /api/page/findById             controllers.PageController.findById(id:Int)
 POST        /api/page/updateById           controllers.PageController.updateById
+POST        /api/page/insert               controllers.PageController.insert
+GET         /api/page/delete               controllers.PageController.delete(id:Int)
 
 
 POST        /api/good/insert               controllers.GoodController.insert
-GET         /api/good/list                 controllers.GoodController.findById(id:Int)
+GET         /api/good/list                 controllers.GoodController.findByShopId(id:Int)
 POST        /api/good/update               controllers.GoodController.updateById
 POST        /api/good/findListByIds        controllers.GoodController.findListByIds
+GET         /api/good/findById             controllers.GoodController.findById(id:Int)

@@ -12,4 +12,6 @@ class GoodService @Inject()(goodRepository: GoodRepository) {
   def updateById(id: Int, data: Good) = goodRepository.updateById(id, data)
 
   def findByIds(ids: List[Int]) = goodRepository.findListByIds(ids)
+
+  def findById(id: Int) = goodRepository.findById(id)
 }

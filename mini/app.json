@@ -1,24 +1,37 @@
 {
   "pages": [
-    "pages/index/index", "pages/logs/logs", "pages/good/index", "pages/info/index"
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/good/index",
+    "pages/info/index",
+    "pages/page/index",
+    "pages/detail/index",
+    "pages/success/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#B3292C",
+    "navigationBarTitleText": "故宫文创旗舰店",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
+    "selectedColor": "#B3292C",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "/assets/home.png",
+        "selectedIconPath": "/assets/home-selected.png"
       }, {
         "pagePath": "pages/good/index",
-        "text": "商品"
+        "text": "商品",
+        "iconPath": "/assets/good.png",
+        "selectedIconPath": "/assets/good-selected.png"
       }, {
         "pagePath": "pages/info/index",
-        "text": "信息"
+        "text": "信息",
+        "iconPath": "/assets/head.png",
+        "selectedIconPath": "/assets/head-selected.png"
       }
     ]
   },

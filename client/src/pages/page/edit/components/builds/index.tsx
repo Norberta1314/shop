@@ -28,13 +28,13 @@ const Build = ({page, dispatch}: BuildProps) => {
 
   return (
     <div className={styles.main}>
-      <Radio.Group
-        onChange={handleClickStyleType}
-        defaultValue={page?.styleType}
-        buttonStyle="solid">
-        <Radio.Button value={StyleType.default}>默认</Radio.Button>
-        <Radio.Button value={StyleType.self}>自定义</Radio.Button>
-      </Radio.Group>
+      {/*<Radio.Group*/}
+      {/*  onChange={handleClickStyleType}*/}
+      {/*  defaultValue={page?.styleType}*/}
+      {/*  buttonStyle="solid">*/}
+      {/*  <Radio.Button value={StyleType.default}>默认</Radio.Button>*/}
+      {/*  <Radio.Button value={StyleType.self}>自定义</Radio.Button>*/}
+      {/*</Radio.Group>*/}
       <ReactIf vIf={page?.styleType === StyleType.self}>
         <Self/>
       </ReactIf>

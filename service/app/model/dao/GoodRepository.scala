@@ -42,4 +42,8 @@ class GoodRepository @Inject()(val dBConfig: DBConfig) extends Repository {
   def findListByIds(ids: List[Int]) = run(quote {
     good.filter(p => liftQuery(ids).contains(p.id))
   })
+
+  def findById(id: Int) = run(quote {
+    good.filter(_.id == lift(id))
+  }).headOption
 }

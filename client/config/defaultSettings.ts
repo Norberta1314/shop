@@ -53,7 +53,7 @@ export default {
   menu: {
     locale: false,
   },
-  title: '叮！啊商城',
+  title: '宫猫记商城',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

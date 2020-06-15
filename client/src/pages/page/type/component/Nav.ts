@@ -8,6 +8,7 @@ export interface NavCell {
   text: string;
   imgUrl: string;
   color: string;
+  linkId: number;
 }
 
 export enum NavStyleMode {
@@ -18,6 +19,7 @@ export const newNavCell: NavCell = {
   text: "",
   imgUrl: "",
   color: "",
+  linkId: 0,
 };
 
 export const newNav: Nav = {

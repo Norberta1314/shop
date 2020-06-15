@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, NavCell, navNumberOptions, navStyleOptions, newNavCell } from "@/pages/page/type/component/Nav";
 import { changeEditCompoennt } from "@/pages/page/edit/ModelType";
 import { PageComponentsType } from "@/pages/page/type/pageComponents";
@@ -9,6 +9,10 @@ import Cell from "./Cell";
 import deepCopy from "@/utils/deepCopy";
 import commonStyle from "@/pages/page/edit/components/setting/index.less";
 import { Divider } from "antd";
+import { Page, PageMode } from "@/pages/page/type/page";
+import { fetchPageList } from "@/pages/page/manage/service";
+import { Result } from "@/type/Result";
+import { success } from "@/utils/request";
 
 interface Props {
   nav: Nav,
@@ -17,6 +21,7 @@ interface Props {
 
 const Index: React.FC<Props> = (props) => {
   const {nav, dispatch} = props;
+  const [pageList, setPageList] = useState<Page[]>([]);
 
   useEffect(() => {
     let cells = [newNavCell, newNavCell, newNavCell];
@@ -27,7 +32,7 @@ const Index: React.FC<Props> = (props) => {
         }
         break;
       case 4:
-        console.log(nav.cells.length)
+        console.log(nav.cells.length);
         if (nav.cells.length !== 4) {
           cells.push(newNavCell);
           handleChange("cells", cells);
@@ -41,6 +46,14 @@ const Index: React.FC<Props> = (props) => {
         break;
     }
   }, [nav.navNumber]);
+
+  useEffect(() => {
+    fetchPageList(1).then((r: Result<Page[]>) => {
+      if (r.code === success) {
+        setPageList(r.data);
+      }
+    });
+  }, []);
 
   function handleChange(attribute: string, e: any) {
     if (dispatch) {
@@ -74,6 +87,7 @@ const Index: React.FC<Props> = (props) => {
       {
         nav.cells.map((cell, index) => (
           <Cell
+            pageList={pageList}
             key={`${cell.imgUrl}-${index}`}
             label={`第${index + 1}个导航`}
             cell={cell}

@@ -9,5 +9,5 @@ export const newHeadline: Headline = {
   title: "请输入标题",
   fontSize: 12,
   fontColor: "#111",
-  backgroundColor: "#fff",
+  backgroundColor: "rgba(ff, ff, ff, 0)",
 };

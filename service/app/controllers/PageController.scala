@@ -18,7 +18,6 @@ class PageController @Inject()(pageService: PageService, cc: ControllerComponent
   def findById(id: Int) = Action {
     pageService.findPageById(id) match {
       case Some(page) =>
-//        val component = Json.parse(page.components.toString()).as[Component]
         jsonSuccess(page)
     }
   }
@@ -28,6 +27,20 @@ class PageController @Inject()(pageService: PageService, cc: ControllerComponent
     val page = Json.parse(request.body.toString()).as[Page]
     println(page)
     pageService.updateById(page.id, page) match {
+      case id: Long => jsonSuccess(id)
+    }
+  }
+
+  def insert = Action(parse.json) {
+    request =>
+      val page = Json.parse(request.body.toString()).as[Page]
+      pageService.insert(page) match {
+        case id: Int => jsonSuccess(id)
+      }
+  }
+
+  def delete(id: Int) = Action {
+    pageService.delete(id) match {
       case id: Long => jsonSuccess(id)
     }
   }

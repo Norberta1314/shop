@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+  <image
+    mode="widthFix"
+    class="ok-png"
+    src="http://shopimage.norberta.me/ok.png" />
+  <view class="success-info">下单成功</view>
+</view>

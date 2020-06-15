@@ -82,7 +82,7 @@ const Index: React.FC<Props> = (props) => {
   function handleChangeImage(value: any) {
     console.log("change image", value, typeof value, value === undefined);
     if (typeof value === "string" || value === undefined) {
-      console.log('dingding')
+      console.log("dingding");
       form.setFieldsValue({imgUrl: value});
       setImage(value);
     }

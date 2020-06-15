@@ -6,6 +6,8 @@ import themePluginConfig from "./themePluginConfig";
 const {pwa} = defaultSettings; // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
 
+export const imgUrlBase = "http://shopimage.norberta.me";
+
 const {ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION} = process.env;
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === "site";
 const plugins: IPlugin[] = [
@@ -100,7 +102,7 @@ export default {
             {
               path: "/welcome",
               name: "welcome",
-              icon: "smile",
+              icon: `${imgUrlBase}/home.png`,
               component: "./Welcome",
             },
             {
@@ -112,12 +114,12 @@ export default {
             },
             {
               name: "店铺装修",
-              icon: "smile",
+              icon: `${imgUrlBase}/page.png`,
               path: "/page/manage",
               component: "./page/manage",
             }, {
               name: "商品管理",
-              icon: "smile",
+              icon: `${imgUrlBase}/good.png`,
               path: "/good/manage",
               component: "./good/manage",
             },
@@ -198,4 +200,3 @@ export default {
   },
 } as IConfig;
 
-export const imgUrlBase = "http://shopimage.norberta.me";

@@ -10,9 +10,16 @@ import utils.ResponseUtils._
 
 class GoodController @Inject()(goodService: GoodService, cc: ControllerComponents) extends AbstractController(cc) {
 
-  def findById(id: Int) = Action {
+  def findByShopId(id: Int) = Action {
     goodService.findByShopId(id) match {
       case goods: List[Good] => jsonSuccess(goods)
+    }
+  }
+
+  def findById(id: Int) = Action {
+    goodService.findById(id) match {
+      case Some(good) =>
+        jsonSuccess(good)
     }
   }
 

@@ -3,11 +3,15 @@
     wx:for="{{goodInfoList}}"
     key="{{item.id}}"
     class='warp'>
-    <div class='block'>
+    <div
+      class='block'
+      data-id="{{item.id}}"
+      bindtap="toDetail">
       <common-image
         src='{{item.imgUrl}}'
         width='173px'
-        widthView='{{173}}' style="border-radius: 5px"/>
+        widthView='{{173}}'
+        style="border-radius: 5px" />
       <div class='textBlock'>
         <div class='title'>{{item.title}}</div>
         <div class='brand'>
