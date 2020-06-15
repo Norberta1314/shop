@@ -32,7 +32,8 @@ class PageRepository @Inject()(val dBConfig: DBConfig) extends Repository {
     page.insert(_.title -> lift(data.title),
       _.mode -> lift(data.mode),
       _.shopId -> lift(data.shopId),
-      _.styleType -> lift(data.styleType))
+      _.styleType -> lift(data.styleType),
+      _.components -> lift(data.components))
       .returningGenerated(_.id)
   })
 

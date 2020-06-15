@@ -6,6 +6,9 @@ import { Card, Form, Input, Select } from "antd";
 import ReactIf from "@/components/ReactIf";
 import { Modal } from "antd";
 import { Dispatch } from "redux";
+import { newShopHeader } from "@/pages/page/type/component/ShopHeader";
+import { newDivider } from "@/pages/page/type/component/Divider";
+import { newPageComponents, PageComponentsType } from "@/pages/page/type/pageComponents";
 
 const layout = {
   labelCol: {span: 4},
@@ -15,13 +18,19 @@ const layout = {
 const Option = [{
   value: 0,
   label: "空模板"
-}, {
-  value: 1,
-  label: "首页"
-}, {
-  value: 2,
-  label: "关于我们"
-}];
+},
+  {
+    value: 1,
+    label: "首页"
+  },
+  {
+    value: 2,
+    label: "活动页面"
+  },
+  {
+    value: 3,
+    label: "关于我们"
+  }];
 
 interface Props {
   title: String;
@@ -37,11 +46,43 @@ const Group = ({title, list, hasAdd, dispatch, refresh}: Props) => {
 
   function insertPage() {
     const data = form.getFieldsValue();
+    let components: any[] = [];
+    if (data.styleType === 1) {
+      components = [newPageComponents(PageComponentsType.ShopHeader),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Nav),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Image),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Carousel),
+        newPageComponents(PageComponentsType.Image),
+        newPageComponents(PageComponentsType.Coupon),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Coupon),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Headline),
+        newPageComponents(PageComponentsType.Goods),
+        newPageComponents(PageComponentsType.ShowCase)];
+    } else if (data.styleType === 3) {
+      components = [newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Notification)];
+    } else if (data.styleType === 2) {
+      components = [newPageComponents(PageComponentsType.ShowCase),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Coupon),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Divider),
+        newPageComponents(PageComponentsType.Coupon)];
+    }
     if (dispatch) {
       dispatch({
         type: "pageManage/insert",
         payload: {
-          data
+          data: {
+            ...data,
+            components: JSON.stringify(components)
+          }
         }
       });
       setShowModal(false);

@@ -8,6 +8,8 @@ import { PageComponentsType } from "@/pages/page/type/pageComponents";
 import { Dispatch } from "redux";
 import { connect } from "dva";
 import commonStyle from "@/pages/page/edit/components/setting/index.less";
+import { Col, Row } from "antd";
+import PickColor from "@/pages/page/edit/components/setting/components/common/PickColor";
 
 interface Props {
   notification: Notification;
@@ -37,14 +39,27 @@ const Index: React.FC<Props> = (props) => {
     <div>
       <div className={commonStyle.settingTitle}>通知</div>
       <InputText
+        label="公告标题"
+        text={notification.title}
+        onChangeInput={(e) => handleChange("title", e)} />
+      <InputText
         label="公告内容"
         text={notification.text}
         onChangeInput={(e) => handleChange("text", e)} />
-      <ImageManage
-        label="图标"
-        fileList={notification.icon}
-        imgNumber={1}
-        onChangeImage={(e) => handleChange("icon", e)} />
+      <Row>
+        <Col span={12}>
+          <PickColor
+            label="字体颜色"
+            value={notification.fontColor}
+            onChangeInput={(e) => handleChange("fontColor", e)} />
+        </Col>
+        <Col span={12}>
+          <PickColor
+            label="背景颜色"
+            value={notification.backgroundColor}
+            onChangeInput={(e) => handleChange("backgroundColor", e)} />
+        </Col>
+      </Row>
     </div>
   );
 };

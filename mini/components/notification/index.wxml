@@ -1,3 +1,10 @@
-<view class="inner">
-  {{innerText}}
-</view>
+<div
+  class='main'
+  style="background:{{notification.backgroundColor}}">
+  <div
+    class='container'
+    style="color:{{notification.fontColor}};borderColor: {{notification.fontColor}}">
+    <div class="title">{{notification.title}}</div>
+    <div class="text">{{notification.text}}</div>
+  </div>
+</div>

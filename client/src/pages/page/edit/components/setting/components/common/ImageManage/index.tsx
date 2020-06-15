@@ -67,7 +67,7 @@ const ImageManage: React.FC<Props> = (props) => {
       const ak = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l";
       //@ts-ignore
       const sk = "wZ5tDZqdvL8WcZCDLtMtfmpOcPkfG7Mxssd-3tQ9";
-      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:qGnmxaS11NhPs5T51vt1QC_Ao7s=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MTA0NTQ0OH0=";
+      const uploadToken = "gckn2ze0pdbvk1GQ_3HgQ2RhqynMCNoNrM-wpe8l:GKQaP6MzsSEYy3D8WrEI0V6mj0U=:eyJzY29wZSI6Im5vcmJlcnRhLXNob3AiLCJkZWFkbGluZSI6MTU5MjI2OTcwN30=";
       const {file} = options;
       const fileName = `${new Date().getTime()}-${file.name}`;
       const putExtra = {

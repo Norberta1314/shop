@@ -24,7 +24,7 @@ export const newNavCell: NavCell = {
 
 export const newNav: Nav = {
   navNumber: 3,
-  styleMode: NavStyleMode.image,
+  styleMode: NavStyleMode.char,
   cells: [newNavCell, newNavCell, newNavCell]
 };
 

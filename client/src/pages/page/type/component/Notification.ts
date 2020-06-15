@@ -1,9 +1,13 @@
 export interface Notification {
-  icon: string;
-  text: string;
+  title: string,
+  text: string,
+  fontColor: string,
+  backgroundColor: string,
 }
 
-export const newNotification = {
-  icon: "",
-  text: "",
+export const newNotification: Notification = {
+  text: "公告内容",
+  title: "公告标题",
+  fontColor: "#ff0000",
+  backgroundColor: "#ffffff"
 };

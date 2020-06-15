@@ -30,5 +30,8 @@
     <show-case
       wx:if="{{item.showCase}}"
       showCase="{{item.showCase}}" />
+    <notification
+      wx:if="{{item.notification}}"
+      notification="{{item.notification}}" />
   </view>
 </view>

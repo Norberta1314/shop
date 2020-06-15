@@ -9,6 +9,7 @@
     "carousel": "/components/carousel/index",
     "coupon": "/components/coupon/index",
     "goods": "/components/good/index",
-    "show-case": "/components/showcase/index"
+    "show-case": "/components/showcase/index",
+    "notification": "/components/notification/index"
   }
 }
